@@ -50,7 +50,7 @@ public class WebSocketHandler {
                     InetAddress ip = InetAddress.getByName("243i4s6955.zicp.vip");
                     hostURL = ip.getHostAddress();//+":25781";
 
-                    socket = new Socket(hostURL,25781);
+                    socket = new Socket("hostURL",9999);
                     Log.i("WebSocketHandler", "建立连接：" + socket);
                     readbuff();
                     showMSGs();

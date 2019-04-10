@@ -24,7 +24,6 @@ public class GoodsRemarkActivity extends BaseActivity implements View.OnClickLis
         tittle = findViewById(R.id.title);
         tittle.setText("商品评论");
         returnFormer.setOnClickListener(this);
-
     }
 
     @Override

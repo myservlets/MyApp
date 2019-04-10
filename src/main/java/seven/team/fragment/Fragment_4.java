@@ -1,7 +1,10 @@
 package seven.team.fragment;
 
 
+import android.app.ProgressDialog;
+import android.os.Message;
 import android.widget.Toast;
+import seven.handler.ServletsConn;
 import seven.team.entity.LoginUser;
 import android.app.AlertDialog;
 import android.content.ContentUris;
@@ -64,7 +67,8 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
     private TextView waitRemark;
     private TextView waitFund;
     private boolean isCamera;
-    private Handler handler = new Handler();
+    private ProgressDialog progressDialog;
+
     public Fragment_4() {
         // Required empty public constructor
     }
@@ -100,6 +104,7 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
         waitFund.setOnClickListener(this);
         floatingActionButton = view.findViewById(R.id.goods_car);
         floatingActionButton.setOnClickListener(this);
+        init();
         return view;
     }
 
@@ -193,11 +198,23 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-    Runnable runnable1 = new Runnable() {
+
+    private void init(){
+        imgUserHead.setImageBitmap(LoginUser.getBitmap());
+    }
+
+    private Handler handler = new Handler(){
         @Override
-        public void run() {
-            imgUserHead.setImageBitmap(photoBitmap);
-            Toast.makeText(getContext(),"上传速度有限，请稍等",Toast.LENGTH_SHORT).show();
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0:
+                    progressDialog.dismiss();
+                    imgUserHead.setImageBitmap(cameraBitmap);
+                    break;
+                case 1:
+                    progressDialog.dismiss();
+                    imgUserHead.setImageBitmap(photoBitmap);
+            }
         }
     };
 
@@ -222,6 +239,10 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
+                    progressDialog = new ProgressDialog(getContext());
+                    progressDialog.setMessage("上传头像中，请稍等");
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
                     fileupload(new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) { }
@@ -257,6 +278,10 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
         }else if("file".equalsIgnoreCase(uri.getScheme())){
             imagePath = uri.getPath();
         }
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("上传头像中，请稍等");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         displayImage(imagePath);
     }
     private String getImagePath(Uri uri,String selection){
@@ -279,7 +304,7 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
                 @Override
                 public void onFailure(Call call, IOException e) { }
                 @Override
-                public void onResponse(Call call, Response response) throws IOException { handler.post(runnable1); }});
+                public void onResponse(Call call, Response response) throws IOException { handler.sendEmptyMessage(1); }});
 
 
         }
@@ -305,14 +330,45 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
         // 上传文件使用MultipartBody.Builder
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("userid", LoginUser.getLoginUser().getUserId()) // 提交普通字段
+                .addFormDataPart("userId", LoginUser.getLoginUser().getUserId()) // 提交普通字段
+                .addFormDataPart("sign", "0") // 提交普通字段
                 .addFormDataPart("image", file.getName(), RequestBody.create(mediaType, file)) // 提交图片，第一个参数是键（name="第一个参数"），第二个参数是文件名，第三个是一个RequestBody
                 .build();
         // POST请求
         Request request = new Request.Builder()
-                .url("http://243i4s6955.zicp.vip/MyServlets_war_exploded/imagehandler")
+                //.url("http://243i4s6955.zicp.vip/MyServlets_war_exploded/imagehandler")
+                .url(ServletsConn.host+"imagehandler")
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(callback);
     }
+
+//    public void fileupload(Callback callback) {
+//        // 获得输入框中的路径
+//        String path = null;
+//        if(isCamera){
+//            path = getActivity().getExternalCacheDir().getPath()+"/out_put.jpg";
+//        }else {
+//            path = imagePath;
+//        }
+//        mediaType = MediaType.parse("image/"+path.substring(path.lastIndexOf(".")+1));
+//        File file = new File(path);
+//        OkHttpClient client = new OkHttpClient();
+//        // 上传文件使用MultipartBody.Builder
+//        RequestBody requestBody = new MultipartBody.Builder()
+//                .setType(MultipartBody.FORM)
+//                .addFormDataPart("goodsId", LoginUser.getLoginUser().getUserId()) // 提交普通字段
+//                .addFormDataPart("sign", "1") // 提交普通字段
+//                .addFormDataPart("1", file.getName(), RequestBody.create(mediaType, file)) // 提交图片，第一个参数是键（name="第一个参数"），第二个参数是文件名，第三个是一个RequestBody
+//                .addFormDataPart("2", file.getName(), RequestBody.create(mediaType, file))
+//                .addFormDataPart("3", file.getName(), RequestBody.create(mediaType, file))
+//                .build();
+//        // POST请求
+//        Request request = new Request.Builder()
+//                //.url("http://243i4s6955.zicp.vip/MyServlets_war_exploded/imagehandler")
+//                .url(ServletsConn.host+"imagehandler")
+//                .post(requestBody)
+//                .build();
+//        client.newCall(request).enqueue(callback);
+//    }
 }

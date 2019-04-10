@@ -14,6 +14,8 @@ public class User extends DataSupport implements Serializable{
 
     private String password;
 
+    private String icon;
+
     public void setHeadId(int headId){ this.headId = headId; }
 
     public int getHeadId(){ return this.headId; }
@@ -29,4 +31,12 @@ public class User extends DataSupport implements Serializable{
     public String getUserId() { return userId; }
 
     public String getPassword() { return password; }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 }

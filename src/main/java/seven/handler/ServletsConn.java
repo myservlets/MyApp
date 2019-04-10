@@ -7,7 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class ServletsConn {
-    //static String host = "http://192.168.1.101:8080/MyServlets_war_exploded/";
+    //public static String host = "http://192.168.1.100:8080/MyServlets_war_exploded/";
     static String host = "http://243i4s6955.zicp.vip/MyServlets_war_exploded/";
     //      static String host = "http://192.168.137.1:8080/";
     public static String connServlets(String url,String json){
