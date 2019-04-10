@@ -1,6 +1,8 @@
 package seven.team.fragment;
 
 
+import android.app.ProgressDialog;
+import android.os.Message;
 import android.widget.Toast;
 import seven.handler.ServletsConn;
 import seven.team.entity.LoginUser;
@@ -65,7 +67,8 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
     private TextView waitRemark;
     private TextView waitFund;
     private boolean isCamera;
-    private Handler handler = new Handler();
+    private ProgressDialog progressDialog;
+
     public Fragment_4() {
         // Required empty public constructor
     }
@@ -200,11 +203,18 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
         imgUserHead.setImageBitmap(LoginUser.getBitmap());
     }
 
-    Runnable runnable1 = new Runnable() {
+    private Handler handler = new Handler(){
         @Override
-        public void run() {
-            imgUserHead.setImageBitmap(photoBitmap);
-            Toast.makeText(getContext(),"上传速度有限，请稍等",Toast.LENGTH_SHORT).show();
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0:
+                    progressDialog.dismiss();
+                    imgUserHead.setImageBitmap(cameraBitmap);
+                    break;
+                case 1:
+                    progressDialog.dismiss();
+                    imgUserHead.setImageBitmap(photoBitmap);
+            }
         }
     };
 
@@ -229,11 +239,15 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
+                    progressDialog = new ProgressDialog(getContext());
+                    progressDialog.setMessage("上传头像中，请稍等");
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
                     fileupload(new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) { }
                         @Override
-                        public void onResponse(Call call, Response response) throws IOException { handler.post(runnable);}});
+                        public void onResponse(Call call, Response response) throws IOException {handler.sendEmptyMessage(0);}});
                 }
                 break;
             case CHOOSE_FROM_PHOTOS:
@@ -264,6 +278,10 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
         }else if("file".equalsIgnoreCase(uri.getScheme())){
             imagePath = uri.getPath();
         }
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("上传头像中，请稍等");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         displayImage(imagePath);
     }
     private String getImagePath(Uri uri,String selection){
@@ -286,7 +304,7 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
                 @Override
                 public void onFailure(Call call, IOException e) { }
                 @Override
-                public void onResponse(Call call, Response response) throws IOException { handler.post(runnable1); }});
+                public void onResponse(Call call, Response response) throws IOException { handler.sendEmptyMessage(1); }});
 
 
         }
