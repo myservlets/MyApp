@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/vertical_wrap_linger">
+    <TextView
+            android:id="@+id/add_friends"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black_color"
+            android:gravity="center"
+            android:padding="16dp"
+            android:background="@drawable/shape_text_line"
+            android:text="添加好友"/>
+    <TextView
+            android:id="@+id/add_request"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black_color"
+            android:gravity="center"
+            android:padding="16dp"
+            android:background="@drawable/shape_text_line"
+            android:text="好友请求"/>
+</LinearLayout>

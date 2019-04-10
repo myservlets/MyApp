@@ -1,11 +1,149 @@
 <resources>
-
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="NoColorTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/noColor</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/dark_theme</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="tab_menu_item">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">7dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">3dp</item>
+    </style>
+    <style name="tab_head_navigate">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@drawable/tab_head_navigate_color</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/tab_head_navigate_shape</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="vertical_wrap_linger">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="vertical_match_linger">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="horizontal_wrap_linger">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="toolbar_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+    </style>
+    <style name="toolbar_primary_layout">
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+    <style name="toolbar_second_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+    <style name="toolbar_return">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
 
+    <style name="toolbar_tools">
+        <item name="android:padding">12dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginStart">4dp</item>
+    </style>
+    <style name="login_style">
+        <item name="android:colorControlActivated">@color/loginBtn</item>
+        <item name="android:colorControlNormal">@color/loginBtn</item>
+    </style>
+    
+    <style name="navigate_btn">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">@drawable/tab_mine_btn</item>
+    </style>
+    <style name="order_info_view">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="set_layout_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="right_little_icon">
+        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_marginEnd">10dp</item>
+    </style>
+
+    <style name="left_little_icon">
+        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_marginStart">10dp</item>
+    </style>
+
+    <style name="item_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black_color</item>
+    </style>
+    <style name="usual_use_textview">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black_color</item>
+        <item name="android:background">@drawable/shape_text_line</item>
+    </style>
+
+    <style name="order_item_btn">
+        <item name="android:background">@drawable/shape_order_btn</item>
+        <item name="android:layout_width">72dp</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:textColor">@color/black_color</item>
+    </style>
 </resources>

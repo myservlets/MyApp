@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/vertical_match_linger">
+    <RelativeLayout
+        style="@style/toolbar_layout">
+        <TextView
+            style="@style/toolbar_second_title"
+            android:text="@string/about_sys_title"/>
+        <ImageView
+            android:id="@+id/return_former"
+            style="@style/toolbar_tools"
+            android:src="@drawable/left_arraw_icon"/>
+    </RelativeLayout>
+    <LinearLayout
+        style="@style/vertical_wrap_linger"
+        android:layout_marginTop="192dp">
+        <TextView
+            android:id="@+id/version_update"
+            style="@style/usual_use_textview"
+            android:text="@string/update_version" />
+        <TextView
+            android:id="@+id/help"
+            style="@style/usual_use_textview"
+            android:text="@string/help" />
+        <TextView
+            android:id="@+id/feedback"
+            style="@style/usual_use_textview"
+            android:text="@string/feedback" />
+    </LinearLayout>
+</LinearLayout>

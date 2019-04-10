@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:paddingTop="4dp" android:paddingBottom="4dp"
+    android:background="@drawable/shape_text_line">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/changeUser_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/icon"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"/>
+    <TextView
+        android:id="@+id/changeUser_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black_color"
+        android:textSize="16sp"
+        android:text="木水先生"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/changeUser_icon"/>
+    <TextView
+        android:id="@+id/changeUser_username"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_toEndOf="@+id/changeUser_icon"
+        android:textSize="12sp"
+        android:layout_marginStart="16dp"
+        android:text="775234463"
+        android:layout_below="@+id/changeUser_name" />
+</RelativeLayout>
