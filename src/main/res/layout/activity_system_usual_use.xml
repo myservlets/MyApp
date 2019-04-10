@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+        <TextView
+            style="@style/toolbar_second_title"
+            android:text="@string/usual_usage_title" />
+        <ImageView
+            android:id="@+id/return_former"
+            style="@style/toolbar_tools"
+            android:src="@drawable/left_arraw_icon"/>
+    </RelativeLayout>
+    <LinearLayout
+        style="@style/vertical_wrap_linger">
+        <TextView
+            android:id="@+id/figer_pay"
+            style="@style/usual_use_textview"
+            android:text="@string/figer_pay"/>
+        <TextView
+            android:id="@+id/sweep_it"
+            style="@style/usual_use_textview"
+            android:text="@string/sweep_it"/>
+        <TextView
+            android:id="@+id/shark_it"
+            style="@style/usual_use_textview"
+            android:text="@string/shark_it"/>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/vertical_wrap_linger"
+        android:layout_marginTop="16dp">
+        <TextView
+            android:id="@+id/change_theme"
+            style="@style/usual_use_textview"
+            android:text="@string/change_theme"/>
+        <TextView
+            android:id="@+id/change_popple"
+            style="@style/usual_use_textview"
+            android:text="@string/change_bubble"/>
+    </LinearLayout>
+</LinearLayout>

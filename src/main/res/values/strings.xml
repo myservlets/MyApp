@@ -1,0 +1,77 @@
+<resources>
+    <string name="return_former_page">返回</string>
+
+    <string name="app_name">易集市</string>
+    <string name="province">选择省</string>
+    <string name="country">选择市</string>
+    <string name="city">选择县</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="chater_title">联系人</string>
+
+
+    <string name="goods_car">商品管理</string>
+    <string name="goods_history">浏览记录</string>
+    <string name="goods_collect">收藏夹</string>
+    <string name="my_order_title">我的订单</string>
+    <string name="my_all_orders">查看全部订单</string>
+    <string name="latest_news">最新物流</string>
+    <string name="wait_pay">待付款</string>
+    <string name="wait_send">代发货</string>
+    <string name="wait_receive">待收货</string>
+    <string name="wait_remark">待评论</string>
+    <string name="wait_refund">退款/售后</string>
+
+
+    <string name="set_title">设置</string>
+    <string name="exit_sys">退出系统</string>
+
+
+    <string name="account_title">账户</string>
+
+    <string name="receive_address_title">收货地址</string>
+    <string name="add_new_address">添加</string>
+
+    <string name="safety_toolbar_title">账户与安全</string>
+    <string name="change_password">修改密码</string>
+    <string name="bind_phone">绑定手机</string>
+    <string name="bind_email">绑定邮箱</string>
+
+    <string name="message_inform_title">消息通知</string>
+    <string name="open_inform">开启消息通知</string>
+    <string name="sound">声音</string>
+    <string name="inform_light">通知时指示灯闪烁</string>
+
+    <string name="usual_usage_title">通用</string>
+    <string name="figer_pay">指纹支付</string>
+    <string name="sweep_it">扫一扫</string>
+    <string name="shark_it">摇一摇</string>
+    <string name="change_theme">更换主题</string>
+    <string name="change_bubble">更换气泡</string>
+
+    <string name="about_sys_title">关于易集市</string>
+    <string name="update_version">版本更新</string>
+    <string name="help">帮助</string>
+    <string name="feedback">反馈</string>
+
+    <string name="cancel_order">取消订单</string>
+    <string name="pay">付款</string>
+    <string name="urge">催促店家</string>
+    <string name="pay_out">退款</string>
+    <string name="where_address">查看物流</string>
+    <string name="confirm">确认收货</string>
+    <string name="delete_order">删除订单</string>
+    <string name="remark">评价</string>
+    <string name="details">查看详情</string>
+
+    <string name="shopping_car_title">购物车</string>
+    <string name="choose_all">全选</string>
+    <string name="calPay">结算</string>
+
+    <string name="commit_order">提交订单</string>
+    <string name="pay_ammout">购买数量</string>
+    <string name="send_way">配送方式</string>
+    <string name="order_extra">订单备注</string>
+    <string name="summation">合计：</string>
+</resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/vertical_wrap_linger">
+    <LinearLayout
+        style="@style/vertical_wrap_linger"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:background="@drawable/shape_my_order">
+
+        <include android:id="@+id/order_head"
+                layout="@layout/layout_order_item_head"/>
+        <include android:id="@+id/order_goods"
+                layout="@layout/layout_order_item_goods"/>
+        <include layout="@layout/layout_order_item_totalprice"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/cancel_order"
+                style="@style/order_item_btn"
+                android:layout_toStartOf="@+id/to_pay"
+                android:layout_marginEnd="16dp"
+                android:text="@string/cancel_order"/>
+            <Button
+                android:id="@+id/to_pay"
+                android:layout_alignParentEnd="true"
+                style="@style/order_item_btn"
+                android:text="@string/pay"/>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/vertical_match_linger">
+    <RelativeLayout style="@style/toolbar_layout">
+        <ImageView
+                android:id="@+id/return_former"
+                style="@style/toolbar_tools"
+                android:src="@drawable/left_arraw_icon"/>
+        <TextView style="@style/toolbar_second_title"
+                  android:text="好友请求"/>
+    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/add_request_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+</LinearLayout>

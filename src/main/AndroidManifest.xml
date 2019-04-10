@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="seven.team.activity">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission
+            android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+            tools:ignore="ProtectedPermissions"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <application
+            android:name="seven.team.util.MyApplication"
+            android:allowBackup="true"
+            android:icon="@mipmap/logo"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+
+        <meta-data
+                android:name="com.baidu.lbsapi.API_KEY"
+                android:value="2GGHxwQH7bRD8kWmDNQQLVyeOjtkXShz"/>
+        <activity
+                android:name=".GoodsRemarkActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme">
+        </activity>
+        <activity
+                android:name=".WelcomeActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".LoginActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".SalerActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".MerchantGoodsListActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".GoodsManageActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".FriendRequestActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".RefundActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".RegisteActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".ChatingActivity"
+                android:launchMode="singleTask"/>
+        <activity
+                android:name=".SearchFriendsActivity"
+                android:launchMode="singleTask"/>
+        <activity
+                android:name=".SearchRecruitActivity"
+                android:launchMode="singleTask"/>
+        <activity
+                android:name=".MainActivity"
+                android:launchMode="singleTask"/>
+        <activity
+                android:name=".SystemSetActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/DarkTheme"/>
+        <activity
+                android:name=".SystemAboutActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".ReceiveAddressActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/DarkTheme"/>
+        <activity
+                android:name=".SystemSafetyActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".SystemInformActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".SystemUsualUseActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".LoginedUserActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/DarkTheme"/>
+        <activity
+                android:name=".NewAddressActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/DarkTheme"/>
+        <activity
+                android:name=".ShoppingCartActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".GoodsDetailsActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".SearchGoodsActivity"
+                android:launchMode="singleTask"/>
+        <activity
+                android:name=".RecruitmentActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".MyOrderActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name="seven.team.util.BaseActivity"
+                android:launchMode="singleTask"/>
+        <activity
+                android:name=".PayActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".LogisticsActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".OrderRemarkActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".RefundDetailsActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".BrowseHistoryActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+        <activity
+                android:name=".WishListActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/NoColorTheme"/>
+
+        <service
+                android:name="com.baidu.location.f"
+                android:enabled="true"
+                android:process=":remote"/>
+
+        <provider
+                android:name="android.support.v4.content.FileProvider"
+                android:authorities="seven.front.camera.provider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_paths"/>
+        </provider>
+    </application>
+
+</manifest>
