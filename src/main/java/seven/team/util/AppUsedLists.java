@@ -1,5 +1,6 @@
 package seven.team.util;
 
+import seven.team.entity.Comment;
 import seven.team.entity.Goods;
 import seven.team.entity.User;
 
@@ -7,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AppUsedLists {
+
+    private static ArrayList<Comment>comments;
     private static ArrayList<User> myfriendlist;
     private static ArrayList<User> applyfriendlist;
     private static ArrayList<User> beapplyfriendlist;
@@ -42,5 +45,16 @@ public class AppUsedLists {
 
     public static void setBusinessGoodsList(ArrayList<Goods> businessGoodsList) {
         AppUsedLists.businessGoodsList = businessGoodsList;
+    }
+
+    public static ArrayList<Comment> getComments() {
+        comments = new ArrayList<>();
+        Comment comment = new Comment();
+        comments.add(comment);
+        return comments;
+    }
+
+    public static void setComments(ArrayList<Comment> comments) {
+        AppUsedLists.comments = comments;
     }
 }

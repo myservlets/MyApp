@@ -11,9 +11,9 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
 import de.hdodenhof.circleimageview.CircleImageView;
 import seven.team.adapter.GoodsAdapter;
-import seven.team.entity.Order;
+import seven.team.entity.*;
+import seven.team.thread.GoodsRemarksTask;
 import seven.team.util.BaseActivity;
-import seven.team.entity.Goods;
 import android.os.Bundle;
 import android.view.View;
 import seven.team.util.UsualIntent;
@@ -22,10 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GoodsDetailsActivity extends BaseActivity implements View.OnClickListener {
-    private List<Goods>goodsList;
+    private List<Goods> recommentGoodsList;
     private GoodsAdapter adapter;
     private List<Integer>images;
     private Goods goods;
+    private Comment comment;
+    private User saler;
 
     private ImageView returnFormer;
     private TextView title;
@@ -51,13 +53,15 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
         setContentView(R.layout.activity_goods_details);
         initImages();
         initGoods();
-        bindData();
         initPage();
+        bindData();
+
     }
 
     private void bindData(){
         returnFormer = findViewById(R.id.return_former);
         title = findViewById(R.id.title);
+        title.setText("商品详情");
         banner = findViewById(R.id.image_banner);
         banner.isAutoPlay(false);
         banner.setViewPagerIsScroll(true);
@@ -72,17 +76,21 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
         banner.setImages(images);
         banner.start();
         price = findViewById(R.id.goods_price);
+        price.setText(String.valueOf(goods.getPrice()));
         content = findViewById(R.id.goods_content);
+        content.setText(goods.getContent());
         goodsRemarks = findViewById(R.id.all_remarks);
         userIcon = findViewById(R.id.user_icon);
         userNickname = findViewById(R.id.user_nickname);
         userRemark = findViewById(R.id.user_remark);
+        userRemark.setText(comment.getContent());
         salerName = findViewById(R.id.saler);
         goodsDescription = findViewById(R.id.goods_description);
+        goodsDescription.setText(goods.getDescribe());
         goodsRecommend = findViewById(R.id.goods_recommend_recycler_view);
         GridLayoutManager manager = new GridLayoutManager(this,2);
         goodsRecommend.setLayoutManager(manager);
-        adapter = new GoodsAdapter(goodsList);
+        adapter = new GoodsAdapter(recommentGoodsList);
         goodsRecommend.setAdapter(adapter);
         toSalerPage = findViewById(R.id.saler_page);
         chatWithSaler = findViewById(R.id.saler_chatter);
@@ -98,21 +106,16 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
         payForIt.setOnClickListener(this);
     }
     private void initGoods(){
-        goodsList = new ArrayList<>();
+        recommentGoodsList = new ArrayList<>();
         for (int i = 0;i<5;i++){
             Goods goods = new Goods();
-            goodsList.add(goods);
+            recommentGoodsList.add(goods);
         }
     }
 
     private void initPage(){
-        goods = (Goods)getIntent().getSerializableExtra("goods_details");
-        title.setText("商品详情");
-//        price.setText(String.valueOf(goods.getPrice()));
-//        content.setText(goods.getContent());
-//        salerName.setText(goods.getNickName());
-        goodsDescription.setText(goods.getDescribe());
-
+        goods = (Goods)getIntent().getSerializableExtra("goods_data");
+        comment = (Comment)getIntent().getSerializableExtra("comment_data");
     }
     private void initImages(){
         images = new ArrayList<>();
@@ -120,8 +123,16 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
         images.add(R.drawable.book);
         images.add(R.drawable.book);
     }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        // TODO: 2019/4/10 0010 获取该物品所有的评论
+        //new GoodsRemarksTask().execute();
+    }
+
     @Override
     public void onClick(View v) {
+        Intent intent = null;
         switch (v.getId()){
             case R.id.return_former:
                 finish();
@@ -134,12 +145,33 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
                 UsualIntent.toAnotherPage("SalerActivity");
                 break;
             case R.id.saler_chatter:
+                intent = new Intent(v.getContext(),ChatingActivity.class);
+                intent.putExtra("opposeUser",saler);
+                v.getContext().startActivity(intent);
                 break;
             case R.id.wish:
-                Toast.makeText(this,"加入收藏夹成功",Toast.LENGTH_SHORT).show();
+                if(WishListActivity.goodsList==null){
+                    WishListActivity.goodsList = new ArrayList<>();
+                }
+                if (WishListActivity.goodsList.contains(goods)){
+                    WishListActivity.goodsList.remove(goods);
+                    Toast.makeText(this,"取消收藏夹成功",Toast.LENGTH_SHORT).show();
+                }else {
+                    WishListActivity.goodsList.add(goods);
+                    Toast.makeText(this,"加入收藏夹成功",Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.add_shopping_car:
-                Toast.makeText(this,"加入购物车成功",Toast.LENGTH_SHORT).show();
+                if(ShoppingCartActivity.goodsList==null){
+                    ShoppingCartActivity.goodsList = new ArrayList<>();
+                }
+                if (ShoppingCartActivity.goodsList.contains(goods)){
+                    ShoppingCartActivity.goodsList.remove(goods);
+                    Toast.makeText(this,"取出购物车成功",Toast.LENGTH_SHORT).show();
+                }else {
+                    ShoppingCartActivity.goodsList.add(goods);
+                    Toast.makeText(this,"加入购物车成功",Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.pay_for_it:
                 finish();
@@ -150,7 +182,7 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
                 order.setGoods(goods);
                 order.setCount(1);
                 order.setCost(order.getCount()*goods.getPrice());
-                Intent intent = new Intent(this,PayActivity.class);
+                intent = new Intent(this,PayActivity.class);
                 intent.putExtra("order",order);
                 startActivity(intent);
                 break;

@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        style="@style/vertical_match_linger">
     <include layout="@layout/layout_header"/>
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+    </ScrollView>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp">
+        <Button android:layout_width="96dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:text="上架商品"/>
+    </RelativeLayout>
 </LinearLayout>

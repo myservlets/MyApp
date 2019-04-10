@@ -23,7 +23,7 @@ public class RelativeGoodsAdapter extends RecyclerView.Adapter<RelativeGoodsAdap
         public ViewHolder(View itemView) {
             super(itemView);
             goodsName = itemView.findViewById(R.id.goods_name);
-            goodsDescribe = itemView.findViewById(R.id.goods_describe);
+            goodsDescribe = itemView.findViewById(R.id.goods_content);
             goodsPrice = itemView.findViewById(R.id.goods_price);
             goodsQuantity = itemView.findViewById(R.id.goods_quantity);
             layGoodsInfo = itemView.findViewById(R.id.goods_item);

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCartActivity extends BaseActivity implements View.OnClickListener {
-    private List<Goods> goods;
+    public static List<Goods> goodsList;
     private ImageView returnFormer;
     private RecyclerView recyclerView;
     private ShoppingCarAdapter adapter;
@@ -23,7 +23,6 @@ public class ShoppingCartActivity extends BaseActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_car);
-        initGoods();
         bindData();
     }
 
@@ -33,21 +32,15 @@ public class ShoppingCartActivity extends BaseActivity implements View.OnClickLi
         recyclerView = findViewById(R.id.shopping_car_recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new ShoppingCarAdapter(goods);
+        adapter = new ShoppingCarAdapter(goodsList);
         recyclerView.setAdapter(adapter);
-    }
-    private void initGoods(){
-        goods = new ArrayList<>();
-        for(int i = 0;i<2;i++){
-            Goods goods = new Goods();
-            this.goods.add(goods);
-        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.return_former:
+                finish();
                 UsualIntent.toAnotherPage("MainActivity");
                 break;
         }

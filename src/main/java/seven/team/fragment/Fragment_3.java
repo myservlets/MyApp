@@ -29,6 +29,7 @@ import seven.handler.WebSocketHandler;
  */
 public class Fragment_3 extends Fragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
+    private List<User>userList;
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerView;
     private Button search;
@@ -36,8 +37,9 @@ public class Fragment_3 extends Fragment implements View.OnClickListener, SwipeR
     private UserAdapter adapter;
 
     public Fragment_3() {
-        initUsers();
-        initWebSocketHandler();
+        userList = new ArrayList<>();
+        //initUsers();
+        //initWebSocketHandler();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,7 +50,9 @@ public class Fragment_3 extends Fragment implements View.OnClickListener, SwipeR
         recyclerView = view.findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new UserAdapter(AppUsedLists.getMyfriendlist());
+        //adapter = new UserAdapter(AppUsedLists.getMyfriendlist());
+
+        adapter = new UserAdapter(userList);
         recyclerView.setAdapter(adapter);
         swipeRefreshLayout = view.findViewById(R.id.swipe_friends);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
@@ -97,9 +101,9 @@ public class Fragment_3 extends Fragment implements View.OnClickListener, SwipeR
         new Thread(new Runnable() {
             @Override
             public void run() {
-                new GetFriendList().execute(2, LoginUser.getLoginUser());
-                adapter.notifyDataSetChanged();
-                swipeRefreshLayout.setRefreshing(true);
+//                new GetFriendList().execute(2, LoginUser.getLoginUser());
+//                adapter.notifyDataSetChanged();
+//                swipeRefreshLayout.setRefreshing(true);
             }
         }).start();
     }
