@@ -52,7 +52,7 @@ public class Fragment_1 extends Fragment implements View.OnClickListener, OnBann
     private Banner banner;
     private RecyclerView proRecyclerView;
     public Fragment_1() {
-        //goodsList = AppUsedLists.getBusinessGoodsList();
+        goodsList = AppUsedLists.getBusinessGoodsList();
         goodsList = new ArrayList<>();
         typeList= new ArrayList<>();
         imageList= new ArrayList<>();
@@ -116,7 +116,7 @@ public class Fragment_1 extends Fragment implements View.OnClickListener, OnBann
                 }else {
                     TextView type=view.findViewById(R.id.type_name);
                     String key = type.getText().toString();
-                    //new typedGoodsTask().execute(key);
+                    new typedGoodsTask().execute(key);
                     // TODO: 2019/4/5 0005 传送type到后台，接收该信息相关的商品列表
                 }
             }
@@ -145,7 +145,7 @@ public class Fragment_1 extends Fragment implements View.OnClickListener, OnBann
             goods.setType("书籍");
             goodsList.add(goods);
         }
-        //new GoodsLoadTask().execute();
+        new GoodsLoadTask().execute();
     }
 
     public void setGridViewHeight(GridView gridview) {

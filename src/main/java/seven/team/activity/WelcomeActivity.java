@@ -20,7 +20,7 @@ public class WelcomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         handler.sendEmptyMessageDelayed(0,3000);
-        //new ManageGoodsTask().execute(4);
+        new ManageGoodsTask().execute(4);
     }
 
     private Handler handler = new Handler() {

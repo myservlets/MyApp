@@ -38,8 +38,8 @@ public class Fragment_3 extends Fragment implements View.OnClickListener, SwipeR
 
     public Fragment_3() {
         userList = new ArrayList<>();
-        //initUsers();
-        //initWebSocketHandler();
+        initUsers();
+        initWebSocketHandler();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +50,7 @@ public class Fragment_3 extends Fragment implements View.OnClickListener, SwipeR
         recyclerView = view.findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(layoutManager);
-        //adapter = new UserAdapter(AppUsedLists.getMyfriendlist());
+        adapter = new UserAdapter(AppUsedLists.getMyfriendlist());
 
         adapter = new UserAdapter(userList);
         recyclerView.setAdapter(adapter);
@@ -101,9 +101,9 @@ public class Fragment_3 extends Fragment implements View.OnClickListener, SwipeR
         new Thread(new Runnable() {
             @Override
             public void run() {
-//                new GetFriendList().execute(2, LoginUser.getLoginUser());
-//                adapter.notifyDataSetChanged();
-//                swipeRefreshLayout.setRefreshing(true);
+                new GetFriendList().execute(2, LoginUser.getLoginUser());
+                adapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(true);
             }
         }).start();
     }

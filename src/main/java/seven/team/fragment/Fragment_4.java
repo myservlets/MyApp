@@ -218,15 +218,6 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
         }
     };
 
-
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            imgUserHead.setImageBitmap(cameraBitmap);
-            Toast.makeText(getContext(),"上传速度有限，请稍等",Toast.LENGTH_SHORT).show();
-        }
-    };
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode , resultCode , data);
@@ -247,7 +238,7 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
                         @Override
                         public void onFailure(Call call, IOException e) { }
                         @Override
-                        public void onResponse(Call call, Response response) throws IOException { handler.post(runnable);}});
+                        public void onResponse(Call call, Response response) throws IOException { handler.sendEmptyMessage(0);}});
                 }
                 break;
             case CHOOSE_FROM_PHOTOS:
