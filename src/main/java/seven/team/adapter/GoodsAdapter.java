@@ -2,6 +2,8 @@ package seven.team.adapter;
 
 import android.content.Intent;
 import seven.team.activity.GoodsDetailsActivity;
+import seven.team.entity.Comment;
+import seven.team.thread.LatestRemarkTask;
 import seven.team.util.MyApplication;
 import seven.team.util.UsualIntent;
 import seven.team.entity.Goods;
@@ -37,10 +39,19 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder>{
             @Override
             public void onClick(View v) {
                 int pos = viewHolder.getAdapterPosition();
-                Intent intent = new Intent(MyApplication.getContext(), GoodsDetailsActivity.class);
+                Intent intent = new Intent(view.getContext(), GoodsDetailsActivity.class);
                 Goods goods = goodsList.get(pos);
-                intent.putExtra("goods_details",goods);
-                MyApplication.getContext().startActivity(intent);
+                intent.putExtra("goods_data",goods);
+
+                Comment comment = new Comment();
+                comment.setScore(3);
+                comment.setContent("这本书非常的不错");
+                intent.putExtra("comment_data",comment);
+
+                // TODO: 2019/4/10 0010
+                //new LatestRemarkTask().execute();
+
+                view.getContext().startActivity(intent);
             }
         });
         return viewHolder;

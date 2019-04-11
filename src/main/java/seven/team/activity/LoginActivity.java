@@ -122,9 +122,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 progressDialog.show();
 
                 //// TODO: 2019/3/22 0022 检查本地是否有该用户的信息，若有，则不必访问服务器
-                new LoginTask().execute(user);
-                //Intent intent = new Intent(MyApplication.getContext(),MainActivity.class);
-                //startActivity(intent);
+                //new LoginTask().execute(user);
+                Intent intent = new Intent(MyApplication.getContext(),MainActivity.class);
+                startActivity(intent);
                 break;
         }
     }
