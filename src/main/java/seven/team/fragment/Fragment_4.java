@@ -32,6 +32,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import seven.team.util.MyApplication;
+import seven.team.util.MyProgressDialog;
 import seven.team.util.UsualIntent;
 import seven.team.activity.MainActivity;
 import seven.team.activity.R;
@@ -67,7 +69,7 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
     private TextView waitRemark;
     private TextView waitFund;
     private boolean isCamera;
-    private ProgressDialog progressDialog;
+    private MyProgressDialog progressDialog;
 
     public Fragment_4() {
         // Required empty public constructor
@@ -230,8 +232,15 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    progressDialog = new ProgressDialog(getContext());
+                    progressDialog = new MyProgressDialog(getContext());
                     progressDialog.setMessage("上传头像中，请稍等");
+                    progressDialog.setTimeOut(5000, new MyProgressDialog.OnTimeOutListener() {
+                        @Override
+                        public void onTimeOut(MyProgressDialog dialog) {
+                            progressDialog.dismiss();
+                            Toast.makeText(MyApplication.getContext(),"头像上传超时",Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     progressDialog.setCancelable(false);
                     progressDialog.show();
                     fileupload(new Callback() {
@@ -269,8 +278,15 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
         }else if("file".equalsIgnoreCase(uri.getScheme())){
             imagePath = uri.getPath();
         }
-        progressDialog = new ProgressDialog(getContext());
+        progressDialog = new MyProgressDialog(getContext());
         progressDialog.setMessage("上传头像中，请稍等");
+        progressDialog.setTimeOut(5000, new MyProgressDialog.OnTimeOutListener() {
+            @Override
+            public void onTimeOut(MyProgressDialog dialog) {
+                progressDialog.dismiss();
+                Toast.makeText(MyApplication.getContext(),"头像上传超时",Toast.LENGTH_SHORT).show();
+            }
+        });
         progressDialog.setCancelable(false);
         progressDialog.show();
         displayImage(imagePath);
@@ -327,39 +343,9 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
                 .build();
         // POST请求
         Request request = new Request.Builder()
-                //.url("http://243i4s6955.zicp.vip/MyServlets_war_exploded/imagehandler")
                 .url(ServletsConn.host+"imagehandler")
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(callback);
     }
-
-//    public void fileupload(Callback callback) {
-//        // 获得输入框中的路径
-//        String path = null;
-//        if(isCamera){
-//            path = getActivity().getExternalCacheDir().getPath()+"/out_put.jpg";
-//        }else {
-//            path = imagePath;
-//        }
-//        mediaType = MediaType.parse("image/"+path.substring(path.lastIndexOf(".")+1));
-//        File file = new File(path);
-//        OkHttpClient client = new OkHttpClient();
-//        // 上传文件使用MultipartBody.Builder
-//        RequestBody requestBody = new MultipartBody.Builder()
-//                .setType(MultipartBody.FORM)
-//                .addFormDataPart("goodsId", LoginUser.getLoginUser().getUserId()) // 提交普通字段
-//                .addFormDataPart("sign", "1") // 提交普通字段
-//                .addFormDataPart("1", file.getName(), RequestBody.create(mediaType, file)) // 提交图片，第一个参数是键（name="第一个参数"），第二个参数是文件名，第三个是一个RequestBody
-//                .addFormDataPart("2", file.getName(), RequestBody.create(mediaType, file))
-//                .addFormDataPart("3", file.getName(), RequestBody.create(mediaType, file))
-//                .build();
-//        // POST请求
-//        Request request = new Request.Builder()
-//                //.url("http://243i4s6955.zicp.vip/MyServlets_war_exploded/imagehandler")
-//                .url(ServletsConn.host+"imagehandler")
-//                .post(requestBody)
-//                .build();
-//        client.newCall(request).enqueue(callback);
-//    }
 }

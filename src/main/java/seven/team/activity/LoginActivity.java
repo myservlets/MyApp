@@ -36,6 +36,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import seven.handler.ServletsConn;
 import org.litepal.LitePal;
+import seven.team.util.MyProgressDialog;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ import java.util.List;
 public class LoginActivity extends BaseActivity implements View.OnClickListener, TextWatcher ,View.OnTouchListener{
     private final static int PERMISSION_REQUEST = 1;
     public LocationClient mLocationClient;
-    private ProgressDialog progressDialog;//弹出的提示框
+    private MyProgressDialog progressDialog;//弹出的提示框
     private Button btnLogin;
     private EditText username;
     private EditText password;
@@ -116,8 +117,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 user.setUserId(username.getText().toString());
                 user.setPassword(password.getText().toString());
 
-                progressDialog = new ProgressDialog(this);
+                progressDialog = new MyProgressDialog(this);
                 progressDialog.setMessage("正在登陆，请稍等");
+                progressDialog.setTimeOut(5000, new MyProgressDialog.OnTimeOutListener() {
+                    @Override
+                    public void onTimeOut(MyProgressDialog dialog) {
+                        progressDialog.dismiss();
+                        Toast.makeText(MyApplication.getContext(),"登录超时请检查网络",Toast.LENGTH_SHORT).show();
+                    }
+                });
                 progressDialog.setCancelable(false);
                 progressDialog.show();
 
