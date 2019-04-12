@@ -8,7 +8,6 @@ import seven.handler.ServletsConn;
 import seven.team.entity.Goods;
 import seven.team.entity.User;
 import seven.team.util.AppUsedLists;
-import seven.team.util.MyApplication;
 
 
 import java.lang.reflect.Type;
@@ -97,10 +96,6 @@ public class ManageGoodsTask extends AsyncTask<Object,Integer,String> {
                 break;
             case 9:
                 System.out.println("所有查询失败");
-                break;
-            case 10:
-                System.out.println("数据库异常");
-                MyApplication.toastMsg("数据库异常");
                 break;
         }
     }

@@ -1,14 +1,7 @@
 package seven.team.activity;
 
 import android.app.ProgressDialog;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Handler;
-import android.os.Message;
-import android.widget.*;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import org.litepal.crud.DataSupport;
 import seven.team.util.AddressGetter;
 import seven.team.util.BaseActivity;
 import seven.team.util.MyApplication;
@@ -29,6 +22,10 @@ import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -36,34 +33,28 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import seven.handler.ServletsConn;
 import org.litepal.LitePal;
-import seven.team.util.MyProgressDialog;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, TextWatcher ,View.OnTouchListener{
     private final static int PERMISSION_REQUEST = 1;
     public LocationClient mLocationClient;
-    private MyProgressDialog progressDialog;//弹出的提示框
+    private ProgressDialog progressDialog;//弹出的提示框
     private Button btnLogin;
     private EditText username;
     private EditText password;
     private TextView rigiste_user;
     private TextView remember_psd;
     private View lay_login;
-    private File file;
-    private File cacheDir;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        LitePal.getDatabase();
         bindData();
         initPermission();
+        initPage();
         initAddress();
-        cacheDir=this.getCacheDir();
     }
 
     private void bindData(){
@@ -82,6 +73,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         remember_psd.getPaint().setAntiAlias(true);
         lay_login = findViewById(R.id.login_layout);
         lay_login.setOnTouchListener(this);
+    }
+
+    private void initPage(){
+      User user = LitePal.findFirst(User.class);
+      username.setText(user.getUserId());
+      password.setText(user.getPassword());
     }
 
     private void initPermission(){
@@ -117,22 +114,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 user.setUserId(username.getText().toString());
                 user.setPassword(password.getText().toString());
 
-                progressDialog = new MyProgressDialog(this);
+                progressDialog = new ProgressDialog(this);
                 progressDialog.setMessage("正在登陆，请稍等");
-                progressDialog.setTimeOut(5000, new MyProgressDialog.OnTimeOutListener() {
-                    @Override
-                    public void onTimeOut(MyProgressDialog dialog) {
-                        progressDialog.dismiss();
-                        Toast.makeText(MyApplication.getContext(),"登录超时请检查网络",Toast.LENGTH_SHORT).show();
-                    }
-                });
                 progressDialog.setCancelable(false);
                 progressDialog.show();
 
                 //// TODO: 2019/3/22 0022 检查本地是否有该用户的信息，若有，则不必访问服务器
                 new LoginTask().execute(user);
-//                Intent intent = new Intent(MyApplication.getContext(),MainActivity.class);
-//                startActivity(intent);
+                //Intent intent = new Intent(MyApplication.getContext(),MainActivity.class);
+                //startActivity(intent);
                 break;
         }
     }
@@ -145,10 +135,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         //// TODO: 2019/3/22 0022 检查本地登录过的账号，是够有此用户的信息，若有则从本地获取用户
-        //List<User>users = DataSupport.where("userId",username.getText().toString()).find(User.class);
-        //if(users!=null){
-        //    loginUser = users.get(0);
-        //}
+        List<User>users = LitePal.where("userId",username.getText().toString()).find(User.class);
+        if(users!=null){
+            User user = users.get(0);
+            username.setText(user.getUserId());
+            password.setText(user.getPassword());
+        }
     }
 
     @Override
@@ -216,25 +208,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 JsonObject jsonObject=gson.fromJson(json,JsonObject.class);
                 flag=Integer.parseInt(jsonObject.get("status").toString());
                 LoginUser.setLoginUser(gson.fromJson(jsonObject.get("User").toString(),User.class));
-                Bitmap bitmap = null;
                 if(flag==0){
-
-                    file = new File(getExternalCacheDir() + "/" + LoginUser.getLoginUser().getIcon());
-                    try {
-                        if(file.exists()) {
-                            bitmap = BitmapFactory.decodeStream(new FileInputStream(file));
-                            LoginUser.setBitmap(bitmap);
-                        }
-                    else {
-                        fileDownload(ServletsConn.host + "icon/" + LoginUser.getLoginUser().getUserId() + "/" + LoginUser.getLoginUser().getIcon());
-                    }
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
+                    progressDialog.dismiss();
                     Intent intent = new Intent(MyApplication.getContext(),MainActivity.class);
                     startActivity(intent);
                     // TODO: 2019/3/24 0024 获取到所有信息之后
-                    //loginUser.save();
+                    User user = LoginUser.getLoginUser();
+                    List<User>users = LitePal.findAll(User.class);
+                    if (users.contains(user)){
+                        user.save();
+                    }
                 }else if (flag==1){
                     Toast.makeText(MyApplication.getContext(),"登录失败",Toast.LENGTH_SHORT).show();
                 }
@@ -247,29 +230,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             }
         }
     }
-
-
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case 1:
-                    progressDialog.setMessage("正在加载数据，请稍等");
-                    break;
-                case 2:
-                    Bitmap bitmap = null;
-                    System.out.println(file);
-                    try {
-                        bitmap = BitmapFactory.decodeStream(new FileInputStream(file));
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    LoginUser.setBitmap(bitmap);
-                    progressDialog.dismiss();
-                    break;
-            }
-        }
-    };
 
     class obtainAddress extends AsyncTask<Object,Integer,List<Province>>{
         List<Province>provinces;
@@ -285,89 +245,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         protected void onPostExecute(List<Province> provinces) {
             //// TODO: 2019/3/30 0030 存入数据库
         }
-    }
-
-
-    public void fileDownload(final String url) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                handler.sendEmptyMessage(1);
-                InputStream is;
-                file = null;
-                RandomAccessFile savedFile = null;
-                try {
-                    long fileLength = getFileLength(url);
-                    final String fileName = getFileName(url);
-                    long downLoadLength = 0;
-                    OkHttpClient client = new OkHttpClient();
-                    Request request = new Request.Builder().url(url).build();
-                    Response response = client.newCall(request).execute();
-                    if (response != null && response.isSuccessful()) {
-                        // 应用关联目录，无需申请读写存储的运行时权限
-                        // 位于/sdcard/Android/data/包名/cache
-                        file = new File(getExternalCacheDir(),fileName);
-                        if(!file.exists())
-                        // 随机访问，可通过seek方法定位到文件的任意位置，方便断点续传
-                        savedFile = new RandomAccessFile(file, "rw");
-                        is = response.body().byteStream();
-                        byte[] buffer = new byte[1024];
-                        int len;
-                        while ((len = is.read(buffer)) != -1)
-                            savedFile.write(buffer, 0, len);
-
-                        // response.body().string()只能调用一次，再次调用报错。
-                        // 写完后可以把body关了
-                        response.body().close();
-
-                        // 能运行到这儿说明下载成功
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(MyApplication.getContext(), "下载成功", Toast.LENGTH_SHORT).show();
-                                handler.sendEmptyMessage(2);
-                            }
-                        });
-                        // response为空或者请求的状态码没有成功
-                    } else {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(MyApplication.getContext(), "下载失败", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    try {
-                        if (savedFile != null) {
-                            savedFile.close();
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-            }
-        }).start();
-    }
-    private long getFileLength(String url) throws IOException{
-        long contentLength = 0;
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-        Response response = client.newCall(request).execute();
-        // 有响应且不为空
-        if (response != null && response.isSuccessful()) {
-            contentLength = response.body().contentLength();
-            response.body().close();
-        }
-        return contentLength;
-    }
-    private String getFileName(String url) {
-        return url.substring(url.lastIndexOf("/"));
     }
 
 }

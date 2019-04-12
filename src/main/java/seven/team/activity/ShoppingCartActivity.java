@@ -27,6 +27,9 @@ public class ShoppingCartActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void bindData(){
+        if (goodsList==null){
+            goodsList = new ArrayList<>();
+        }
         returnFormer = findViewById(R.id.return_former);
         returnFormer.setOnClickListener(this);
         recyclerView = findViewById(R.id.shopping_car_recycler_view);
