@@ -77,8 +77,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     private void initPage(){
       User user = LitePal.findFirst(User.class);
-      username.setText(user.getUserId());
-      password.setText(user.getPassword());
+      if(user!=null){
+          username.setText(user.getUserId());
+          password.setText(user.getPassword());
+      }
     }
 
     private void initPermission(){
@@ -135,12 +137,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         //// TODO: 2019/3/22 0022 检查本地登录过的账号，是够有此用户的信息，若有则从本地获取用户
-        List<User>users = LitePal.where("userId",username.getText().toString()).find(User.class);
-        if(users!=null){
-            User user = users.get(0);
-            username.setText(user.getUserId());
-            password.setText(user.getPassword());
-        }
+//        List<User>users = LitePal.where("userId = ",username.getText().toString()).find(User.class);
+//        if(users!=null){
+//            User user = users.get(0);
+//            username.setText(user.getUserId());
+//            password.setText(user.getPassword());
+//        }
     }
 
     @Override
@@ -215,7 +217,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     // TODO: 2019/3/24 0024 获取到所有信息之后
                     User user = LoginUser.getLoginUser();
                     List<User>users = LitePal.findAll(User.class);
-                    if (users.contains(user)){
+                    if (!users.contains(user)){
                         user.save();
                     }
                 }else if (flag==1){
