@@ -11,8 +11,8 @@ import java.net.URL;
 import static seven.team.util.MyApplication.toastMsg;
 
 public class ServletsConn {
-    public static String host1 = "http://243i4s6955.zicp.vip/test/";
-    public static String host = "http://243i4s6955.zicp.vip/MyServlets_war_exploded/";
+    public static String host = "http://243i4s6955.zicp.vip/test/";
+    public static String host1 = "http://243i4s6955.zicp.vip/MyServlets_war_exploded/";
     //public static String host = "http://243i4s6955.zicp.vip/test/";
     //      static String host = "http://192.168.137.1:8080/";
     public static String connServlets(String url,String json){
