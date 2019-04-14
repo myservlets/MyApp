@@ -127,7 +127,7 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         // TODO: 2019/4/10 0010 获取该物品所有的评论
-        //new GoodsRemarksTask().execute();
+        new GoodsRemarksTask().execute();
     }
 
     @Override
@@ -146,6 +146,9 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.saler_chatter:
                 intent = new Intent(v.getContext(),ChatingActivity.class);
+                saler = new User();
+                saler.setNickname("saler");
+                saler.setUserId("456");
                 intent.putExtra("opposeUser",saler);
                 v.getContext().startActivity(intent);
                 break;
@@ -180,10 +183,11 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
                 goods.setContent("正版二手软件工程");
                 goods.setPrice(20);
                 order.setGoods(goods);
+                order.setStatus(0);
                 order.setCount(1);
                 order.setCost(order.getCount()*goods.getPrice());
                 intent = new Intent(this,PayActivity.class);
-                intent.putExtra("order",order);
+                intent.putExtra("order_data",order);
                 startActivity(intent);
                 break;
         }

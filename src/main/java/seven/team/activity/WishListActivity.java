@@ -29,6 +29,9 @@ public class WishListActivity extends BaseActivity implements View.OnClickListen
         bindData();
     }
     private void bindData(){
+        if (goodsList==null){
+            goodsList = new ArrayList<>();
+        }
         returnFormer = findViewById(R.id.return_former);
         title = findViewById(R.id.title);
         recyclerView = findViewById(R.id.history_recycler_view);

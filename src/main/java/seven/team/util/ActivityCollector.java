@@ -20,6 +20,12 @@ public class ActivityCollector {
         activities.remove(activity);
     }
 
+    public static boolean isActivityAlive(Activity activity){
+        if (activities.contains(activity)){
+            return false;
+        }else return false;
+    }
+
     public static void finishAll(){
         for(Activity activity : activities){
             activity.finish();

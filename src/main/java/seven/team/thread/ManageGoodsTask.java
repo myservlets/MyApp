@@ -8,7 +8,6 @@ import seven.handler.ServletsConn;
 import seven.team.entity.Goods;
 import seven.team.entity.User;
 import seven.team.util.AppUsedLists;
-import seven.team.util.MyApplication;
 
 
 import java.lang.reflect.Type;
