@@ -1,6 +1,5 @@
 package seven.team.entity;
 
-import android.graphics.Bitmap;
 import seven.handler.WebSocketHandler;
 
 import java.util.ArrayList;
@@ -15,8 +14,6 @@ public class LoginUser {
     private static WebSocketHandler webSocketHandler;
 
     private static ArrayList<User> friendlist;
-
-    private static Bitmap bitmap;
 
     private LoginUser(User loginUser){ LoginUser.loginUser = loginUser; }
 
@@ -39,13 +36,5 @@ public class LoginUser {
 
     public static void setFriendlist(ArrayList<User> friendlist) {
         LoginUser.friendlist = friendlist;
-    }
-
-    public static Bitmap getBitmap() {
-        return bitmap;
-    }
-
-    public static void setBitmap(Bitmap bitmap) {
-        LoginUser.bitmap = bitmap;
     }
 }

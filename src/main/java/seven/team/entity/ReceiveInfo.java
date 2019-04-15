@@ -1,11 +1,13 @@
 package seven.team.entity;
 
+import org.litepal.crud.LitePalSupport;
+
 import java.io.Serializable;
 
 /**
  * Created by Administrator on 2019/3/18 0018.
  */
-public class ReceiveInfo implements Serializable{
+public class ReceiveInfo extends LitePalSupport implements Serializable{
 
     private String userId;
 

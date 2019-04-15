@@ -29,6 +29,10 @@ import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -53,15 +57,17 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private TextView remember_psd;
     private View lay_login;
     private File file;
+    private File cacheDir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        LitePal.getDatabase();
         bindData();
         initPermission();
+        initPage();
         initAddress();
+        cacheDir=this.getCacheDir();
     }
 
     private void bindData(){
@@ -80,6 +86,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         remember_psd.getPaint().setAntiAlias(true);
         lay_login = findViewById(R.id.login_layout);
         lay_login.setOnTouchListener(this);
+    }
+
+    private void initPage(){
+      User user = LitePal.findFirst(User.class);
+      if(user!=null){
+          username.setText(user.getUserId());
+          password.setText(user.getPassword());
+      }
     }
 
     private void initPermission(){
@@ -117,7 +131,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
                 progressDialog = new MyProgressDialog(this);
                 progressDialog.setMessage("正在登陆，请稍等");
-                progressDialog.onStart();
                 progressDialog.setTimeOut(5000, new MyProgressDialog.OnTimeOutListener() {
                     @Override
                     public void onTimeOut(MyProgressDialog dialog) {
@@ -130,8 +143,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
                 //// TODO: 2019/3/22 0022 检查本地是否有该用户的信息，若有，则不必访问服务器
                 new LoginTask().execute(user);
-//                Intent intent = new Intent(MyApplication.getContext(),MainActivity.class);
-//                startActivity(intent);
+                //Intent intent = new Intent(MyApplication.getContext(),MainActivity.class);
+                //startActivity(intent);
                 break;
         }
     }
@@ -144,10 +157,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         //// TODO: 2019/3/22 0022 检查本地登录过的账号，是够有此用户的信息，若有则从本地获取用户
-        //List<User>users = DataSupport.where("userId",username.getText().toString()).find(User.class);
-        //if(users!=null){
-        //    loginUser = users.get(0);
-        //}
+//        List<User>users = LitePal.where("userId = ",username.getText().toString()).find(User.class);
+//        if(users!=null){
+//            User user = users.get(0);
+//            username.setText(user.getUserId());
+//            password.setText(user.getPassword());
+//        }
     }
 
     @Override
@@ -232,7 +247,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         e.printStackTrace();
                     }
                     // TODO: 2019/3/24 0024 获取到所有信息之后
-                    //loginUser.save();
+                    User user = LoginUser.getLoginUser();
+                    List<User>users = LitePal.findAll(User.class);
+                    if (!users.contains(user)){
+                        user.save();
+                    }
                 }else if (flag==1){
                     Toast.makeText(MyApplication.getContext(),"登录失败",Toast.LENGTH_SHORT).show();
                 }
@@ -263,6 +282,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         e.printStackTrace();
                     }
                     LoginUser.setBitmap(bitmap);
+                    //progressDialog.mTimeOut = 0;
                     progressDialog.dismiss();
                     Intent intent = new Intent(MyApplication.getContext(),MainActivity.class);
                     startActivity(intent);

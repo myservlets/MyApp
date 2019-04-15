@@ -26,10 +26,17 @@
             android:roundIcon="@mipmap/ic_launcher"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name="seven.team.WX.wxapi.WXExtryActivity"
+                  android:exported="true"
+                  android:launchMode="singleTop">
+        </activity>
+        <activity android:name="seven.team.WX.SendToWXActivity">
+        </activity>
 
         <meta-data
                 android:name="com.baidu.lbsapi.API_KEY"
                 android:value="2GGHxwQH7bRD8kWmDNQQLVyeOjtkXShz"/>
+
         <activity
                 android:name=".GoodsRemarkActivity"
                 android:launchMode="singleTask"

@@ -1,19 +1,14 @@
 package seven.handler;
 
-import android.net.Network;
 import com.google.gson.Gson;
 
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.NoRouteToHostException;
 import java.net.URL;
 
-import static seven.team.util.MyApplication.toastMsg;
-
 public class ServletsConn {
-    public static String host = "http://243i4s6955.zicp.vip/test/";
-    public static String host1 = "http://243i4s6955.zicp.vip/MyServlets_war_exploded/";
-    //public static String host = "http://243i4s6955.zicp.vip/test/";
+    //static String host = "http://192.168.1.101:8080/MyServlets_war_exploded/";
+    static String host = "http://10.135.5.232:8080/test/";
     //      static String host = "http://192.168.137.1:8080/";
     public static String connServlets(String url,String json){
         Gson gson = new Gson();
@@ -44,12 +39,8 @@ public class ServletsConn {
             br.close();
             json=buffer.toString();
             System.out.println(json);
-        }
-        catch (IOException e) {
-            if(e instanceof FileNotFoundException)
-                toastMsg("该地址不存在，请检查");
+        } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
         return json;
     }
