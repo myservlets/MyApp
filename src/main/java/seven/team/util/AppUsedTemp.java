@@ -1,15 +1,8 @@
 package seven.team.util;
 
-import seven.team.entity.ReceiveInfo;
+import seven.team.entity.Comment;
 
 public class AppUsedTemp {
-    private static ReceiveInfo receiveInfo;
+    private static Comment comment;
 
-    public static ReceiveInfo getReceiveInfo() {
-        return receiveInfo;
-    }
-
-    public static void setReceiveInfo(ReceiveInfo receiveInfo) {
-        AppUsedTemp.receiveInfo = receiveInfo;
-    }
 }

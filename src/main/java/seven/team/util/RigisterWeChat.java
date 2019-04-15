@@ -1,5 +1,4 @@
 package seven.team.util;
-
 import android.content.Context;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
@@ -9,17 +8,21 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 public class RigisterWeChat {
 
-    private static final String APP_ID = "wx8adb2edf696345dc";
-    public static IWXAPI api;
+    private static final String APP_ID = "wxf72dd1dd6feb31de";
+    private IWXAPI api;
+    private Context context;
 
-    public static void regToWx(Context context) {
+    public RigisterWeChat(Context context){
+        this.context = context;
+    }
+    private void regToWx() {
         // 通过WXAPIFactory工厂，获取IWXAPI的实例
         api = WXAPIFactory.createWXAPI(context, APP_ID, true);
         // 将应用的appId注册到微信
         api.registerApp(APP_ID);
     }
 
-    public static void shareText(String text){
+    private void shareText(String text){
         //初始化一个 WXTextObject 对象，填写分享的文本内容
         WXTextObject textObj = new WXTextObject();
         textObj.text = text;
@@ -37,7 +40,7 @@ public class RigisterWeChat {
         api.sendReq(req);
     }
 
-    private static String buildTransaction(final String type) {
+    private String buildTransaction(final String type) {
         return (type == null) ? String.valueOf(System.currentTimeMillis()) : type + System.currentTimeMillis();
     }
 }

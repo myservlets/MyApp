@@ -133,14 +133,7 @@ public class ChatingActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
-    // 构建Runnable对象。在runnable中更新界面
-//    public Runnable   runnableUi=new  Runnable(){
-//        @Override
-//        public void run() {
-//            //更新界面
-//            textView.setText(msg);
-//        }
-//    };
+
     public Handler msghandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {

@@ -25,14 +25,9 @@ public class BrowseHistoryActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse_history);
-
         bindData();
     }
-
     private void bindData(){
-        if (goodsList==null){
-            goodsList = new ArrayList<>();
-        }
         returnFormer = findViewById(R.id.return_former);
         title = findViewById(R.id.title);
         recyclerView = findViewById(R.id.history_recycler_view);
@@ -43,7 +38,6 @@ public class BrowseHistoryActivity extends AppCompatActivity implements View.OnC
         title.setText("浏览历史");
         returnFormer.setOnClickListener(this);
     }
-
 
     @Override
     public void onClick(View v) {

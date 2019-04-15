@@ -1,7 +1,6 @@
 package seven.team.sqlite;
 
 import org.litepal.crud.DataSupport;
-import org.litepal.crud.LitePalSupport;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,7 +8,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2019/3/23 0023.
  */
-public class Province extends LitePalSupport implements Serializable {
+public class Province extends DataSupport implements Serializable {
     private String code;
     private String name;
     private List<Country> cityList;

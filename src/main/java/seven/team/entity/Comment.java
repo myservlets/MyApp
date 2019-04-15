@@ -1,13 +1,11 @@
 package seven.team.entity;
 
-import org.litepal.crud.LitePalSupport;
-
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Comment extends LitePalSupport implements Serializable {
+public class Comment implements Serializable {
     private String userId;
     private String content;
     private int score;

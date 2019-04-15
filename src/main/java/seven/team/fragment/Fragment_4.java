@@ -1,7 +1,10 @@
 package seven.team.fragment;
 
 
+import android.app.ProgressDialog;
+import android.os.Message;
 import android.widget.Toast;
+import seven.handler.ServletsConn;
 import seven.team.entity.LoginUser;
 import android.app.AlertDialog;
 import android.content.ContentUris;
@@ -156,6 +159,7 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
                 intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
                 startActivityForResult(intent,CHOOSE_FROM_CAMERA);
                 dialog.dismiss();
+
                 break;
             case R.id.choose_from_photos:
                 isCamera = false;
