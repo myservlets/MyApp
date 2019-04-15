@@ -1,6 +1,7 @@
 package seven.team.thread;
 
 import android.os.AsyncTask;
+import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -8,6 +9,7 @@ import seven.handler.ServletsConn;
 import seven.team.entity.Goods;
 import seven.team.entity.User;
 import seven.team.util.AppUsedLists;
+import seven.team.util.MyApplication;
 
 
 import java.lang.reflect.Type;
@@ -55,48 +57,59 @@ public class ManageGoodsTask extends AsyncTask<Object,Integer,String> {
 
     @Override
     protected void onPostExecute(String json) {
-        int result;
-        if(json == null) return;
-        Gson gson = new Gson();
-        JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
-        result = Integer.parseInt(jsonObject.get("status").toString());
-        ArrayList<Goods> goodsArrayList;
-        switch (result){
-            case 0:
-                System.out.println("发布成功");
-                break;
-            case 1:
-                System.out.println("发布失败");
-                break;
-            case 2:
-                System.out.println("查询成功");
-                Type listType = new TypeToken<ArrayList<Goods>>() {}.getType();
-                goodsArrayList = gson.fromJson(jsonObject.get("ArrayList<Goods>").toString(),listType);
-                System.out.println(goodsArrayList);
-                break;
-            case 3:
-                System.out.println("查询失败");
-                break;
-            case 4:
-                System.out.println("修改成功");
-                break;
-            case 5:
-                System.out.println("修改失败");
-                break;
-            case 6:
-                System.out.println("删除成功");
-                break;
-            case 7:
-                System.out.println("删除失败");
-            case 8:
-                System.out.println("所有查询成功");
-                listType = new TypeToken<ArrayList<Goods>>() {}.getType();
-                goodsArrayList = gson.fromJson(jsonObject.get("ArrayList<Goods>").toString(),listType);
-                AppUsedLists.setBusinessGoodsList(goodsArrayList);
-                break;
-            case 9:
-                System.out.println("所有查询失败");
-                break;
+        try {
+            int result;
+            if (json.equals("")) return;
+            Gson gson = new Gson();
+            JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
+            result = Integer.parseInt(jsonObject.get("status").toString());
+            ArrayList<Goods> goodsArrayList;
+            switch (result) {
+                case -1:
+                    System.out.println("数据库异常");
+                    Toast.makeText(MyApplication.getContext(),"数据库异常",Toast.LENGTH_LONG);
+                    break;
+                case 0:
+                    System.out.println("发布成功");
+                    break;
+                case 1:
+                    System.out.println("发布失败");
+                    break;
+                case 2:
+                    System.out.println("查询成功");
+                    Type listType = new TypeToken<ArrayList<Goods>>() {
+                    }.getType();
+                    goodsArrayList = gson.fromJson(jsonObject.get("ArrayList<Goods>").toString(), listType);
+                    System.out.println(goodsArrayList);
+                    break;
+                case 3:
+                    System.out.println("查询失败");
+                    break;
+                case 4:
+                    System.out.println("修改成功");
+                    break;
+                case 5:
+                    System.out.println("修改失败");
+                    break;
+                case 6:
+                    System.out.println("删除成功");
+                    break;
+                case 7:
+                    System.out.println("删除失败");
+                case 8:
+                    System.out.println("所有查询成功");
+                    listType = new TypeToken<ArrayList<Goods>>() {
+                    }.getType();
+                    goodsArrayList = gson.fromJson(jsonObject.get("ArrayList<Goods>").toString(), listType);
+                    AppUsedLists.setBusinessGoodsList(goodsArrayList);
+                    break;
+                case 9:
+                    System.out.println("所有查询失败");
+                    break;
+            }
+        }catch (NullPointerException e) {
+            Toast.makeText(MyApplication.getContext(),"地址错误请重试",Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
         }
     }
 }
