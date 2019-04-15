@@ -57,7 +57,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private TextView remember_psd;
     private View lay_login;
     private File file;
-    private File cacheDir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +66,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         initPermission();
         initPage();
         initAddress();
-        cacheDir=this.getCacheDir();
     }
 
     private void bindData(){

@@ -39,8 +39,12 @@ public class ServletsConn {
             br.close();
             json=buffer.toString();
             System.out.println(json);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
+            if(e instanceof FileNotFoundException)
+                toastMsg("该地址不存在，请检查");
             e.printStackTrace();
+            return null;
         }
         return json;
     }

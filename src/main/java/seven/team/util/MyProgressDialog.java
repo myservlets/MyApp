@@ -16,7 +16,7 @@ import java.util.TimerTask;
   */
 public class MyProgressDialog extends ProgressDialog {
 
-    public long mTimeOut = 0;// 默认timeOut为0, 即无限大
+    private long mTimeOut = 0;// 默认timeOut为0, 即无限大
     private OnTimeOutListener mTimeOutListener = null;// timeOut后的处理器
     private Timer mTimer = null;// 定时器
 
