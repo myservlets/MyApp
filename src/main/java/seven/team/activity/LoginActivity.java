@@ -227,10 +227,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 Gson gson=new Gson();
                 JsonObject jsonObject=gson.fromJson(json,JsonObject.class);
                 flag=Integer.parseInt(jsonObject.get("status").toString());
-                LoginUser.setLoginUser(gson.fromJson(jsonObject.get("User").toString(),User.class));
-                Bitmap bitmap = null;
                 if(flag==0){
-
+                    LoginUser.setLoginUser(gson.fromJson(jsonObject.get("User").toString(),User.class));
+                    Bitmap bitmap = null;
                     file = new File(getExternalCacheDir() + "/" + LoginUser.getLoginUser().getIcon());
                     try {
                         if(file.exists()) {

@@ -1,6 +1,8 @@
 package seven.handler;
 
+import android.widget.Toast;
 import com.google.gson.Gson;
+import seven.team.util.MyApplication;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -42,7 +44,7 @@ public class ServletsConn {
         }
         catch (IOException e) {
             if(e instanceof FileNotFoundException)
-                toastMsg("该地址不存在，请检查");
+                Toast.makeText(MyApplication.getContext(), "地址不存在，请重试", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
             return null;
         }

@@ -14,6 +14,8 @@ public class User extends LitePalSupport implements Serializable{
 
     private String userId;
 
+    private String icon;
+
     private String password;
 
     public void setHeadId(int headId){ this.headId = headId; }
@@ -31,4 +33,12 @@ public class User extends LitePalSupport implements Serializable{
     public String getUserId() { return userId; }
 
     public String getPassword() { return password; }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 }
