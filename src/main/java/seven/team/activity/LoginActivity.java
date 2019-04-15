@@ -119,6 +119,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
                 progressDialog = new MyProgressDialog(this);
                 progressDialog.setMessage("正在登陆，请稍等");
+                progressDialog.onStart();
                 progressDialog.setTimeOut(5000, new MyProgressDialog.OnTimeOutListener() {
                     @Override
                     public void onTimeOut(MyProgressDialog dialog) {
@@ -224,6 +225,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         if(file.exists()) {
                             bitmap = BitmapFactory.decodeStream(new FileInputStream(file));
                             LoginUser.setBitmap(bitmap);
+                            handler.sendEmptyMessage(2);
                         }
                     else {
                         fileDownload(ServletsConn.host + "icon/" + LoginUser.getLoginUser().getUserId() + "/" + LoginUser.getLoginUser().getIcon());
@@ -231,8 +233,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    Intent intent = new Intent(MyApplication.getContext(),MainActivity.class);
-                    startActivity(intent);
                     // TODO: 2019/3/24 0024 获取到所有信息之后
                     //loginUser.save();
                 }else if (flag==1){
@@ -265,7 +265,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         e.printStackTrace();
                     }
                     LoginUser.setBitmap(bitmap);
+                    //progressDialog.mTimeOut = 0;
                     progressDialog.dismiss();
+                    Intent intent = new Intent(MyApplication.getContext(),MainActivity.class);
+                    startActivity(intent);
                     break;
             }
         }

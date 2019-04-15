@@ -211,10 +211,12 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
             switch (msg.what) {
                 case 0:
                     progressDialog.dismiss();
+                    LoginUser.setBitmap(cameraBitmap);
                     imgUserHead.setImageBitmap(cameraBitmap);
                     break;
                 case 1:
                     progressDialog.dismiss();
+                    LoginUser.setBitmap(photoBitmap);
                     imgUserHead.setImageBitmap(photoBitmap);
             }
         }
