@@ -48,6 +48,4 @@ public class AddRequestAdapter extends RecyclerView.Adapter<AddRequestAdapter.Vi
     public int getItemCount() {
         return users.size();
     }
-
-
 }

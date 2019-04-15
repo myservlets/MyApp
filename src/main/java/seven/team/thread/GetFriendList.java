@@ -23,6 +23,7 @@ public class GetFriendList extends AsyncTask<Object,Integer,String> {
         Gson gson = new Gson();
         String json = "{'sign':"+sign+",'User':"+gson.toJson(user)+"}";
         return ServletsConn.connServlets("friends",json);
+
     }
     @Override
     protected void onPostExecute(String json) {

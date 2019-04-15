@@ -8,7 +8,7 @@ public class Order implements Serializable {
     private int goodsId;
     private Goods goods;
     private String userId;
-    private int status;// 0/购物车 1/待付款 2/待发货 3/待收货 4/待评论 5/售后
+    private int status;
     private int count;
     private Double cost;
     private Date date;

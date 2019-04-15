@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <litepal>
     <dbname value="User"/>
+    <dbname value="ReceiveInfo"/>
     <version value="1"/>
     <list>
         <mapping class="seven.team.entity.User"/>
+        <mapping class="seven.team.entity.ReceiveInfo"/>
     </list>>
 </litepal>

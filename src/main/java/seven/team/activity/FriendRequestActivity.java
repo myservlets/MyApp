@@ -1,4 +1,5 @@
 package seven.team.activity;
+
 import seven.team.adapter.AddRequestAdapter;
 import seven.team.util.BaseActivity;
 import seven.team.util.UsualIntent;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import seven.team.thread.GetFriendList;
 
 import java.util.List;
+
 public class FriendRequestActivity extends BaseActivity implements View.OnClickListener {
     public List<User>userList;
     private ImageView returnFormer;
