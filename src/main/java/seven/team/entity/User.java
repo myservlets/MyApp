@@ -1,12 +1,10 @@
 package seven.team.entity;
 
-import org.litepal.LitePal;
 import org.litepal.crud.DataSupport;
-import org.litepal.crud.LitePalSupport;
 
 import java.io.Serializable;
 
-public class User extends LitePalSupport implements Serializable{
+public class User extends DataSupport implements Serializable{
 
     private String nickname;
 
@@ -15,6 +13,8 @@ public class User extends LitePalSupport implements Serializable{
     private String userId;
 
     private String password;
+
+    private String icon;
 
     public void setHeadId(int headId){ this.headId = headId; }
 
@@ -31,4 +31,12 @@ public class User extends LitePalSupport implements Serializable{
     public String getUserId() { return userId; }
 
     public String getPassword() { return password; }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 }

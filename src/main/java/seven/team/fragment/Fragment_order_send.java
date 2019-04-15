@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seven.team.adapter.WaitSendGoodsAdapter;
-import seven.team.util.AppUsedLists;
 import seven.team.util.MyApplication;
+import seven.team.entity.Goods;
 import seven.team.activity.R;
 
 /**
@@ -23,21 +23,29 @@ import seven.team.activity.R;
  */
 public class Fragment_order_send extends Fragment {
     private RecyclerView recyclerView;
-    private List<Order> orderList;
+    private List<Order> orders;
 
     public Fragment_order_send() {
-        if (AppUsedLists.getWaitSendList()==null){
-            AppUsedLists.setWaitSendList(new ArrayList<Order>());
-        }
-        orderList = AppUsedLists.getWaitSendList();
+        this.orders = new ArrayList<>();
+        Order order = new Order();
+        Goods goods = new Goods();
+        goods.setPrice(1.2);
+        goods.setDescribe("12331");
+        goods.setNickName("姚连杰");
+        order.setGoods(goods);
+        order.setStatus(0);
+        order.setCost(200.0);
+        order.setCount(1);
+        this.orders.add(order);
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order_send, container, false);
         recyclerView = view.findViewById(R.id.wait_send_recycler_view);
-        WaitSendGoodsAdapter adapter = new WaitSendGoodsAdapter(orderList);
+        WaitSendGoodsAdapter adapter = new WaitSendGoodsAdapter(orders);
         LinearLayoutManager manager = new LinearLayoutManager(MyApplication.getContext());
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);

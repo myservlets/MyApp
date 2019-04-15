@@ -22,7 +22,7 @@
                 android:background="@drawable/shape_usual_circle">
             <RelativeLayout
                     android:layout_width="0dp"
-                    android:layout_weight="1.5"
+                    android:layout_weight="2"
                     android:layout_height="wrap_content">
                 <ImageView
                         android:id="@+id/address_icon"
@@ -33,7 +33,7 @@
             </RelativeLayout>
             <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="7.5"
+                    android:layout_weight="7"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                 <LinearLayout
@@ -62,12 +62,12 @@
             </LinearLayout>
             <RelativeLayout
                     android:layout_width="0dp"
-                    android:layout_weight="0.5"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
                 <ImageView android:id="@+id/other_address"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"/>
             </RelativeLayout>
         </LinearLayout>
         <LinearLayout

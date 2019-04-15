@@ -26,7 +26,6 @@ public class GoodsRemarkAdapter extends RecyclerView.Adapter<GoodsRemarkAdapter.
         }
     }
     public GoodsRemarkAdapter(List<Comment>commentList){ this.commentList = commentList; }
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_goods_remark,parent,false);

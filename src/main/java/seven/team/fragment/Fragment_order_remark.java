@@ -1,6 +1,7 @@
 package seven.team.fragment;
 
 
+import seven.team.entity.Goods;
 import seven.team.entity.Order;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seven.team.adapter.WaitRemarkGoodsAdapter;
-import seven.team.util.AppUsedLists;
 import seven.team.util.MyApplication;
 import seven.team.activity.R;
 
@@ -23,13 +23,20 @@ import seven.team.activity.R;
  */
 public class Fragment_order_remark extends Fragment {
     private RecyclerView recyclerView;
-    private List<Order> orderList;
+    private List<Order> orders;
 
     public Fragment_order_remark() {
-        if (AppUsedLists.getWaitRemarkList()==null){
-            AppUsedLists.setWaitRemarkList(new ArrayList<Order>());
-        }
-        orderList = AppUsedLists.getWaitRemarkList();
+        this.orders = new ArrayList<>();
+        Order order = new Order();
+        Goods goods = new Goods();
+        goods.setPrice(1.2);
+        goods.setDescribe("12331");
+        goods.setNickName("姚连杰");
+        order.setGoods(goods);
+        order.setStatus(0);
+        order.setCost(200.0);
+        order.setCount(1);
+        this.orders.add(order);
     }
 
 
@@ -38,7 +45,7 @@ public class Fragment_order_remark extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order_remark, container, false);
         recyclerView = view.findViewById(R.id.wait_remark_recycler_view);
-        WaitRemarkGoodsAdapter adapter = new WaitRemarkGoodsAdapter(orderList);
+        WaitRemarkGoodsAdapter adapter = new WaitRemarkGoodsAdapter(orders);
         LinearLayoutManager manager = new LinearLayoutManager(MyApplication.getContext());
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);

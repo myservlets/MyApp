@@ -24,8 +24,6 @@ import seven.handler.ServletsConn;
 public class ReceiveAddressActivity extends BaseActivity implements View.OnClickListener {
 
     private final int TO_ADDING_ADDRESS = 1;
-    public static final int CHOOSED_A_ADDRESS = 2;
-
     private ImageView btnBackFormer;
     private TextView txtToAddAddress;
     private List<ReceiveInfo> addressList;
@@ -56,7 +54,7 @@ public class ReceiveAddressActivity extends BaseActivity implements View.OnClick
         // TODO: 2019/3/25 0025  传送一个user对象，初始化list
         //new ReceiveAddressTask().execute(loginUser);
 
-        addressList = new ArrayList<>();
+        addressList = new ArrayList<ReceiveInfo>();
         for(int i=0;i<2;i++){
             ReceiveInfo address = new ReceiveInfo();
             address.setName("姚连杰");

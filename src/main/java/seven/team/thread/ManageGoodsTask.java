@@ -97,10 +97,6 @@ public class ManageGoodsTask extends AsyncTask<Object,Integer,String> {
             case 9:
                 System.out.println("所有查询失败");
                 break;
-            case -1:
-                System.out.println("数据库异常");
-                MyApplication.toastMsg("数据库异常");
-                break;
         }
     }
 }
