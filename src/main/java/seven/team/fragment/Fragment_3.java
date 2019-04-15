@@ -29,6 +29,7 @@ import seven.handler.WebSocketHandler;
  */
 public class Fragment_3 extends Fragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
+    private List<User>userList;
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerView;
     private Button search;
@@ -36,6 +37,7 @@ public class Fragment_3 extends Fragment implements View.OnClickListener, SwipeR
     private UserAdapter adapter;
 
     public Fragment_3() {
+        userList = new ArrayList<>();
         initUsers();
         initWebSocketHandler();
     }
@@ -50,6 +52,7 @@ public class Fragment_3 extends Fragment implements View.OnClickListener, SwipeR
         recyclerView.setLayoutManager(layoutManager);
         adapter = new UserAdapter(AppUsedLists.getMyfriendlist());
 
+        //adapter = new UserAdapter(userList);
         recyclerView.setAdapter(adapter);
         swipeRefreshLayout = view.findViewById(R.id.swipe_friends);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
