@@ -1,6 +1,5 @@
 package seven.handler;
 
-import android.app.Application;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -14,16 +13,15 @@ import seven.team.util.AppUsedLists;
 import seven.team.util.MyApplication;
 
 import java.io.*;
-import java.net.*;
+import java.net.InetAddress;
+import java.net.Socket;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static seven.team.util.MyApplication.toastMsg;
-
 
 public class WebSocketHandler {
-    private static String hostURL = "192.168.1.101";
+    private static String hostURL = "10.135.5.232";
 
 
     private Socket socket;
@@ -63,22 +61,11 @@ public class WebSocketHandler {
                     sendMsg(chatMSG);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    if (e instanceof SocketTimeoutException) {
-                        toastMsg("连接超时，正在重连");
-                        this.start();
-                    } else if (e instanceof NoRouteToHostException) {
-                        toastMsg("该地址不存在，请检查");
-                        closeAll();
-                    } else if (e instanceof ConnectException) {
-                        toastMsg("连接异常或被拒绝，请检查");
-                        closeAll();
-                    }
                 }
             }
         }.start();
+
     }
-
-
 
     public void sendMsg(final ChatMSG msg){
         sendThread = new Thread() {

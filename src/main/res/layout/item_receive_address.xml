@@ -4,30 +4,35 @@
     android:layout_height="wrap_content"
     android:padding="16dp"
     android:background="@drawable/shape_text_line">
-    <TextView
-        android:id="@+id/receive_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black_color"
-        android:textSize="20sp"
-        android:text="小明"/>
-    <TextView
-        android:id="@+id/receive_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:layout_toEndOf="@+id/receive_name"
-        android:layout_marginEnd="10dp"
-        android:text="13297865211"/>
-    <TextView
-        android:id="@+id/receive_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/receive_name"
-        android:layout_marginTop="8dp"
-        android:textSize="16sp"
-        android:textColor="@color/black_color"
-        android:text="湖北省武汉市洪山区武汉大学珞喻路129号"/>
+    <RelativeLayout
+            android:id="@+id/receive_info_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <TextView
+                android:id="@+id/receive_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_color"
+                android:textSize="20sp"
+                android:text="小明"/>
+        <TextView
+                android:id="@+id/receive_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_toEndOf="@+id/receive_name"
+                android:layout_marginEnd="10dp"
+                android:text="13297865211"/>
+        <TextView
+                android:id="@+id/receive_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/receive_name"
+                android:layout_marginTop="8dp"
+                android:textSize="16sp"
+                android:textColor="@color/black_color"
+                android:text="湖北省武汉市洪山区武汉大学珞喻路129号"/>
+    </RelativeLayout>
     <TextView
         android:id="@+id/receive_edit"
         android:layout_width="wrap_content"
