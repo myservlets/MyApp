@@ -1,7 +1,9 @@
 package seven.handler;
 
+import android.util.Log;
 import android.widget.Toast;
 import com.google.gson.Gson;
+import okhttp3.*;
 import seven.team.util.MyApplication;
 
 import java.io.*;
@@ -9,45 +11,34 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class ServletsConn {
-    public static String host = "http://243i4s6955.zicp.vip/MyServlets_war_exploded/";
-    //public static String host = "http://192.168.1.102:8080/test/";
+    public static String host = "http://243i4s6955.zicp.vip/test/";
+    public static String host1 = "http://243i4s6955.zicp.vip/MyServlets_war_exploded/";
+    //public static String host = "http://10.135.5.232:8080/test/";
     //      static String host = "http://192.168.137.1:8080/";
-    public static String connServlets(String url,String json){
-        Gson gson = new Gson();
-        HttpURLConnection conn = null;
-        System.out.println(json);
+
+    public static final String TAG = "MainActivity";
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+
+    public static String connServlets(String url, String json) {
+        String json1= null;
+        OkHttpClient okHttpClient = new OkHttpClient();
+        RequestBody requestBody = RequestBody.create(JSON, json);
+        Request request = new Request.Builder()
+                .url(host + url)
+                .post(requestBody)
+                .build();
         try {
-            conn = (HttpURLConnection) new URL(host+url).openConnection();
-            conn.setConnectTimeout(50000);
-            conn.setReadTimeout(30000);
-            conn.setDoInput(true);
-            conn.setDoOutput(true);
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-            OutputStream out = conn.getOutputStream();
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));
-            bw.write(json);
-            bw.flush();
-            out.close();
-            bw.close();
-            InputStream in = conn.getInputStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String str = null;
-            StringBuffer buffer = new StringBuffer();
-            while((str = br.readLine())!=null){
-                buffer.append(str);
+            Response response = okHttpClient.newCall(request).execute();
+            //判断请求是否成功
+            if (response.isSuccessful()) {
+                //打印服务端返回结果
+                json1 = response.body().string();
+                response.body().close();
             }
-            in.close();
-            br.close();
-            json=buffer.toString();
-            System.out.println(json);
-        }
-        catch (IOException e) {
-            if(e instanceof FileNotFoundException)
-                Toast.makeText(MyApplication.getContext(), "地址不存在，请重试", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
-        return json;
+        return json1;
     }
 }

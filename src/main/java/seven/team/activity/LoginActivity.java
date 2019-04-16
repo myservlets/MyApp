@@ -1,15 +1,15 @@
 package seven.team.activity;
 
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import seven.team.util.AddressGetter;
-import seven.team.util.BaseActivity;
-import seven.team.util.MyApplication;
+import android.util.Log;
+import android.widget.*;
+import okhttp3.*;
+import org.json.JSONObject;
+import seven.team.util.*;
 import seven.team.sqlite.Province;
 import seven.team.entity.LoginUser;
 import seven.team.entity.User;
@@ -38,11 +38,13 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import seven.handler.ServletsConn;
 import org.litepal.LitePal;
-import seven.team.util.MyProgressDialog;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, TextWatcher ,View.OnTouchListener{
     private final static int PERMISSION_REQUEST = 1;
@@ -55,6 +57,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private TextView remember_psd;
     private View lay_login;
     private File file;
+    public final static int CONNECT_TIMEOUT = 60;
+    public final static int READ_TIMEOUT = 100;
+    public final static int WRITE_TIMEOUT = 60;
+    public static final OkHttpClient client = new OkHttpClient.Builder()
+            .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)//设置读取超时时间
+            .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)//设置写的超时时间
+            .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)//设置连接超时时间
+            .build();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,11 +95,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     }
 
     private void initPage(){
-      User user = LitePal.findFirst(User.class);
-      if(user!=null){
-          username.setText(user.getUserId());
-          password.setText(user.getPassword());
-      }
+        User user = LitePal.findFirst(User.class);
+        if(user!=null){
+            username.setText(user.getUserId());
+            password.setText(user.getPassword());
+        }
     }
 
     private void initPermission(){
@@ -136,9 +146,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 });
                 progressDialog.setCancelable(false);
                 progressDialog.show();
-
                 //// TODO: 2019/3/22 0022 检查本地是否有该用户的信息，若有，则不必访问服务器
                 new LoginTask().execute(user);
+
                 //Intent intent = new Intent(MyApplication.getContext(),MainActivity.class);
                 //startActivity(intent);
                 break;
@@ -153,10 +163,17 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         //// TODO: 2019/3/22 0022 检查本地登录过的账号，是够有此用户的信息，若有则从本地获取用户
+//        List<User>users = LitePal.where("userId = ",username.getText().toString()).find(User.class);
+//        if(users!=null){
+//            User user = users.get(0);
+//            username.setText(user.getUserId());
+//            password.setText(user.getPassword());
+//        }
     }
 
     @Override
     public void afterTextChanged(Editable s) {
+
     }
 
 
@@ -228,13 +245,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                             LoginUser.setBitmap(bitmap);
                             handler.sendEmptyMessage(2);
                         }
-                    else {
-                        fileDownload(ServletsConn.host + "icon/" + LoginUser.getLoginUser().getUserId() + "/" + LoginUser.getLoginUser().getIcon());
-                    }
+                        else {
+                            fileDownload(ServletsConn.host + "icon/" + LoginUser.getLoginUser().getUserId() + "/" + LoginUser.getLoginUser().getIcon());
+                        }
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    // TODO: 2019/3/24 0024 获取到所有信息之后,存入前端
+                    // TODO: 2019/3/24 0024 获取到所有信息之后
                     User user = LoginUser.getLoginUser();
                     List<User>users = LitePal.findAll(User.class);
                     if (!users.contains(user)){
@@ -270,10 +287,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         e.printStackTrace();
                     }
                     LoginUser.setBitmap(bitmap);
+                    //progressDialog.mTimeOut = 0;
                     progressDialog.dismiss();
                     Intent intent = new Intent(MyApplication.getContext(),MainActivity.class);
                     startActivity(intent);
                     break;
+                case 3:
+                    progressDialog.dismiss();
+                    intent = new Intent(MyApplication.getContext(),MainActivity.class);
+                    startActivity(intent);
             }
         }
     };
@@ -315,8 +337,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         // 位于/sdcard/Android/data/包名/cache
                         file = new File(getExternalCacheDir(),fileName);
                         if(!file.exists())
-                        // 随机访问，可通过seek方法定位到文件的任意位置，方便断点续传
-                        savedFile = new RandomAccessFile(file, "rw");
+                            // 随机访问，可通过seek方法定位到文件的任意位置，方便断点续传
+                            savedFile = new RandomAccessFile(file, "rw");
                         is = response.body().byteStream();
                         byte[] buffer = new byte[1024];
                         int len;
@@ -341,6 +363,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                             @Override
                             public void run() {
                                 Toast.makeText(MyApplication.getContext(), "下载失败", Toast.LENGTH_SHORT).show();
+                                handler.sendEmptyMessage(3);
                             }
                         });
                     }
