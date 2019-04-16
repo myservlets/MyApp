@@ -1,0 +1,12 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="toolbar_margin_start">16dp</dimen>
+    <dimen name="toolbar_margin_top">16dp</dimen>
+
+    <dimen name="big_user_icon">64dp</dimen>
+    <dimen name="midium_user_icon">56dp</dimen>
+    <dimen name="little_user_icon">48dp</dimen>
+</resources>

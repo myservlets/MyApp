@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/vertical_match_linger">
+    <RelativeLayout
+            android:id="@+id/toolBar"
+        style="@style/toolbar_primary_layout">
+        <TextView
+            style="@style/toolbar_second_title"
+            android:textColor="@color/white_color"
+            android:text="@string/chater_title" />
+        <Button
+            android:id="@+id/search_friends"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/nav_head"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_friends"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

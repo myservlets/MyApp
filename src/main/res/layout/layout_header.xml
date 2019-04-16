@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/toolbar_layout">
+    <ImageView
+            android:id="@+id/return_former"
+            style="@style/toolbar_tools"
+            android:src="@drawable/left_arraw_icon"/>
+    <TextView
+            android:id="@+id/title"
+            style="@style/toolbar_second_title"/>
+</RelativeLayout>
+
