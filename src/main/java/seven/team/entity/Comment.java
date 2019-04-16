@@ -14,17 +14,8 @@ public class Comment extends LitePalSupport implements Serializable {
     private int goodsId;
     private String date;
 
-    public Date getDate() {
-        Date date1 = new Date();
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            date1 = sdf.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return date1;
+    public String getDate() {
+        return date;
     }
 
     public void setDate(Date date) {

@@ -10,7 +10,6 @@ import seven.team.entity.CommentItem;
 import seven.team.entity.Goods;
 import seven.team.entity.User;
 import seven.team.util.AppUsedLists;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 

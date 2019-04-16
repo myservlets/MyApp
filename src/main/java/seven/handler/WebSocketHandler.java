@@ -21,7 +21,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class WebSocketHandler {
-    private static String hostURL = "10.135.5.232";
+    private static String hostURL = "192.168.1.102";
 
 
     private Socket socket;

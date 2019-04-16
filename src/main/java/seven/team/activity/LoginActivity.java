@@ -1,11 +1,9 @@
 package seven.team.activity;
 
-import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
-import android.widget.*;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -155,17 +153,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         //// TODO: 2019/3/22 0022 检查本地登录过的账号，是够有此用户的信息，若有则从本地获取用户
-//        List<User>users = LitePal.where("userId = ",username.getText().toString()).find(User.class);
-//        if(users!=null){
-//            User user = users.get(0);
-//            username.setText(user.getUserId());
-//            password.setText(user.getPassword());
-//        }
     }
 
     @Override
     public void afterTextChanged(Editable s) {
-
     }
 
 
@@ -243,7 +234,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    // TODO: 2019/3/24 0024 获取到所有信息之后
+                    // TODO: 2019/3/24 0024 获取到所有信息之后,存入前端
                     User user = LoginUser.getLoginUser();
                     List<User>users = LitePal.findAll(User.class);
                     if (!users.contains(user)){
@@ -279,7 +270,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         e.printStackTrace();
                     }
                     LoginUser.setBitmap(bitmap);
-                    //progressDialog.mTimeOut = 0;
                     progressDialog.dismiss();
                     Intent intent = new Intent(MyApplication.getContext(),MainActivity.class);
                     startActivity(intent);
