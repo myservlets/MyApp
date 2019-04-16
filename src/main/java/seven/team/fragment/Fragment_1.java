@@ -54,8 +54,8 @@ public class Fragment_1 extends Fragment implements View.OnClickListener, OnBann
     private Banner banner;
     private RecyclerView proRecyclerView;
     public Fragment_1() {
-        goodsList = AppUsedLists.getBusinessGoodsList();
-        //goodsList = new ArrayList<>();
+        //goodsList = AppUsedLists.getBusinessGoodsList();
+        goodsList = new ArrayList<>();
         typeList= new ArrayList<>();
         imageList= new ArrayList<>();
         images = new ArrayList<>();
@@ -138,6 +138,7 @@ public class Fragment_1 extends Fragment implements View.OnClickListener, OnBann
     private void initGoods(){
         for(int i = 0;i<10;i++){
             Goods goods = new Goods();
+            goods.setGoodsId(5);
             goods.setPrice(2.5);
             goods.setContent("软件工程二手");
             goods.setNickName("小明");

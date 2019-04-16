@@ -8,11 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import seven.team.activity.R;
 import seven.team.entity.Comment;
+import seven.team.entity.CommentItem;
+import seven.team.entity.User;
 
 import java.util.List;
 
 public class GoodsRemarkAdapter extends RecyclerView.Adapter<GoodsRemarkAdapter.ViewHolder> {
-    private List<Comment>commentList;
+    private List<CommentItem>commentList;
 
     class ViewHolder extends RecyclerView.ViewHolder{
         ImageView remarkerIcon;
@@ -25,7 +27,7 @@ public class GoodsRemarkAdapter extends RecyclerView.Adapter<GoodsRemarkAdapter.
             super(itemView);
         }
     }
-    public GoodsRemarkAdapter(List<Comment>commentList){ this.commentList = commentList; }
+    public GoodsRemarkAdapter(List<CommentItem>commentList){ this.commentList = commentList; }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -42,7 +44,13 @@ public class GoodsRemarkAdapter extends RecyclerView.Adapter<GoodsRemarkAdapter.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Comment comment = commentList.get(position);
+        CommentItem commentItem = commentList.get(position);
+        User user = commentItem.getUser();
+        Comment comment = commentItem.getComment();
+        holder.remarks.setText(comment.getContent());
+        holder.remarkDate.setText(comment.getDate());
+        holder.remarkerName.setText(user.getNickname());
+        holder.remarkScore.setText("1.0");
     }
 
     @Override

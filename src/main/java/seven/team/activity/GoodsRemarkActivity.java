@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import seven.team.adapter.GoodsRemarkAdapter;
 import seven.team.entity.Comment;
+import seven.team.entity.CommentItem;
 import seven.team.util.AppUsedLists;
 import seven.team.util.BaseActivity;
 import seven.team.util.UsualIntent;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class GoodsRemarkActivity extends BaseActivity implements View.OnClickListener {
 
-    private List<Comment>commentList;
+    private List<CommentItem>commentList;
     private ImageView returnFormer;
     private TextView tittle;
     private RecyclerView recyclerView;
@@ -45,10 +46,7 @@ public class GoodsRemarkActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void initData(){
-        //commentList = AppUsedLists.getComments();
-        commentList = new ArrayList<>();
-        Comment comment = new Comment();
-        commentList.add(comment);
+        commentList = AppUsedLists.getGoodsRemarksList();
     }
 
     @Override

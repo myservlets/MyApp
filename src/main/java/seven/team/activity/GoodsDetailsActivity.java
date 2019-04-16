@@ -127,7 +127,7 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         // TODO: 2019/4/10 0010 获取该物品所有的评论
-        //new GoodsRemarksTask().execute(1,goods);
+        new GoodsRemarksTask().execute(1,goods);
     }
 
     @Override

@@ -95,11 +95,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     }
 
     private void initPage(){
-      User user = LitePal.findFirst(User.class);
-      if(user!=null){
-          username.setText(user.getUserId());
-          password.setText(user.getPassword());
-      }
+        User user = LitePal.findFirst(User.class);
+        if(user!=null){
+            username.setText(user.getUserId());
+            password.setText(user.getPassword());
+        }
     }
 
     private void initPermission(){
@@ -245,9 +245,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                             LoginUser.setBitmap(bitmap);
                             handler.sendEmptyMessage(2);
                         }
-                    else {
-                        fileDownload(ServletsConn.host + "icon/" + LoginUser.getLoginUser().getUserId() + "/" + LoginUser.getLoginUser().getIcon());
-                    }
+                        else {
+                            fileDownload(ServletsConn.host + "icon/" + LoginUser.getLoginUser().getUserId() + "/" + LoginUser.getLoginUser().getIcon());
+                        }
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -337,8 +337,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         // 位于/sdcard/Android/data/包名/cache
                         file = new File(getExternalCacheDir(),fileName);
                         if(!file.exists())
-                        // 随机访问，可通过seek方法定位到文件的任意位置，方便断点续传
-                        savedFile = new RandomAccessFile(file, "rw");
+                            // 随机访问，可通过seek方法定位到文件的任意位置，方便断点续传
+                            savedFile = new RandomAccessFile(file, "rw");
                         is = response.body().byteStream();
                         byte[] buffer = new byte[1024];
                         int len;
