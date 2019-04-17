@@ -46,12 +46,17 @@
                 android:name=".WelcomeActivity"
                 android:launchMode="singleTask"
                 android:theme="@style/NoColorTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
                 android:name=".LoginActivity"
                 android:launchMode="singleTask"
-                android:theme="@style/NoColorTheme"/>
+                android:theme="@style/NoColorTheme">
+        </activity>
         <activity
                 android:name=".SalerActivity"
                 android:launchMode="singleTask"
@@ -60,11 +65,7 @@
                 android:name=".MerchantGoodsListActivity"
                 android:launchMode="singleTask"
                 android:theme="@style/NoColorTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
                 android:name=".GoodsManageActivity"
