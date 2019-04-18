@@ -1,6 +1,8 @@
 package seven.team.activity;
 
 import seven.team.adapter.ShoppingCarAdapter;
+import seven.team.entity.Order;
+import seven.team.util.AppUsedLists;
 import seven.team.util.BaseActivity;
 import seven.team.util.UsualIntent;
 import seven.team.entity.Goods;
@@ -27,6 +29,9 @@ public class ShoppingCartActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void bindData(){
+        if (AppUsedLists.getShoppingCarOrderList()==null){
+            AppUsedLists.setShoppingCarOrderList(new ArrayList<Order>());
+        }
         if (goodsList==null){
             goodsList = new ArrayList<>();
         }
@@ -44,7 +49,7 @@ public class ShoppingCartActivity extends BaseActivity implements View.OnClickLi
         switch (v.getId()){
             case R.id.return_former:
                 finish();
-                UsualIntent.toAnotherPage("MainActivity");
+                //UsualIntent.toAnotherPage("MainActivity");
                 break;
         }
     }

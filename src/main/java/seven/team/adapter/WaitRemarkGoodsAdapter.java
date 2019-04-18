@@ -1,5 +1,7 @@
 package seven.team.adapter;
 
+import seven.team.activity.MerchantGoodsActivity;
+import seven.team.activity.OrderRemarkActivity;
 import seven.team.entity.Goods;
 import seven.team.entity.Order;
 import android.support.v7.widget.RecyclerView;
@@ -23,14 +25,14 @@ public class WaitRemarkGoodsAdapter extends RecyclerView.Adapter<WaitRemarkGoods
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.order_head:
-                UsualIntent.toAnotherPage("MerchantGoodsListActivity");
+                UsualIntent.toAnotherPage(MerchantGoodsActivity.class);
                 break;
             case R.id.order_goods:
                 break;
             case R.id.delete_order:
                 break;
             case R.id.remark:
-                UsualIntent.toAnotherPage("OrderRemarkActivity");
+                UsualIntent.toAnotherPage(OrderRemarkActivity.class);
                 break;
         }
     }

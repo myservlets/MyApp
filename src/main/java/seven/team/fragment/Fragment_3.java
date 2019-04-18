@@ -1,6 +1,8 @@
 package seven.team.fragment;
 
 
+import seven.team.activity.FriendRequestActivity;
+import seven.team.activity.SearchFriendsActivity;
 import seven.team.thread.GetFriendList;
 import seven.team.util.AppUsedLists;
 import seven.team.util.UsualIntent;
@@ -88,10 +90,10 @@ public class Fragment_3 extends Fragment implements View.OnClickListener, SwipeR
                 ininPopWindow(v);
                 break;
             case R.id.add_friends:
-                UsualIntent.toAnotherPage("SearchFriendsActivity");
+                UsualIntent.toAnotherPage(SearchFriendsActivity.class);
                 break;
             case R.id.add_request:
-                UsualIntent.toAnotherPage("FriendRequestActivity");
+                UsualIntent.toAnotherPage(FriendRequestActivity.class);
                 break;
         }
     }

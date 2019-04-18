@@ -13,6 +13,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import seven.team.adapter.GoodsAdapter;
 import seven.team.entity.*;
 import seven.team.thread.GoodsRemarksTask;
+import seven.team.util.AppUsedTemp;
 import seven.team.util.BaseActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,7 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
     private List<Goods> recommentGoodsList;
     private GoodsAdapter adapter;
     private List<Integer>images;
+    private GoodsDetails goodsDetails;
     private Goods goods;
     private Comment comment;
     private User saler;
@@ -55,11 +57,11 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
         initGoods();
         initPage();
         bindData();
-
     }
 
     private void bindData(){
         returnFormer = findViewById(R.id.return_former);
+        returnFormer.setOnClickListener(this);
         title = findViewById(R.id.title);
         title.setText("商品详情");
         banner = findViewById(R.id.image_banner);
@@ -80,11 +82,15 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
         content = findViewById(R.id.goods_content);
         content.setText(goods.getContent());
         goodsRemarks = findViewById(R.id.all_remarks);
+        goodsRemarks.setOnClickListener(this);
         userIcon = findViewById(R.id.user_icon);
+
+        // TODO: 2019/4/18 0018 评论者头像
         userNickname = findViewById(R.id.user_nickname);
         userRemark = findViewById(R.id.user_remark);
         userRemark.setText(comment.getContent());
         salerName = findViewById(R.id.saler);
+        salerName.setText(saler.getNickname());
         goodsDescription = findViewById(R.id.goods_description);
         goodsDescription.setText(goods.getDescribe());
         goodsRecommend = findViewById(R.id.goods_recommend_recycler_view);
@@ -93,29 +99,30 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
         adapter = new GoodsAdapter(recommentGoodsList);
         goodsRecommend.setAdapter(adapter);
         toSalerPage = findViewById(R.id.saler_page);
-        chatWithSaler = findViewById(R.id.saler_chatter);
-        wishIt = findViewById(R.id.wish);
-        addShoppingCar = findViewById(R.id.add_shopping_car);
-        payForIt = findViewById(R.id.pay_for_it);
-        returnFormer.setOnClickListener(this);
-        goodsRemarks.setOnClickListener(this);
         toSalerPage.setOnClickListener(this);
+        chatWithSaler = findViewById(R.id.saler_chatter);
         chatWithSaler.setOnClickListener(this);
+        wishIt = findViewById(R.id.wish);
         wishIt.setOnClickListener(this);
+        addShoppingCar = findViewById(R.id.add_shopping_car);
         addShoppingCar.setOnClickListener(this);
+        payForIt = findViewById(R.id.pay_for_it);
         payForIt.setOnClickListener(this);
     }
     private void initGoods(){
-        recommentGoodsList = new ArrayList<>();
-        for (int i = 0;i<5;i++){
-            Goods goods = new Goods();
-            recommentGoodsList.add(goods);
-        }
+//        recommentGoodsList = new ArrayList<>();
+//        for (int i = 0;i<5;i++){
+//            Goods goods = new Goods();
+//            recommentGoodsList.add(goods);
+//        }
     }
 
     private void initPage(){
-        goods = (Goods)getIntent().getSerializableExtra("goods_data");
-        comment = (Comment)getIntent().getSerializableExtra("comment_data");
+        goodsDetails = AppUsedTemp.getGoodsDetails();
+        goods = goodsDetails.getChoosedGoods();
+        comment = goodsDetails.getLatestComment();
+        saler = goodsDetails.getSaler();
+        recommentGoodsList = goodsDetails.getRecommendGoods();
     }
     private void initImages(){
         images = new ArrayList<>();
@@ -126,7 +133,6 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-        // TODO: 2019/4/10 0010 获取该物品所有的评论
         new GoodsRemarksTask().execute(1,goods);
     }
 
@@ -136,13 +142,16 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
         switch (v.getId()){
             case R.id.return_former:
                 finish();
-                UsualIntent.toAnotherPage("MainActivity");
+                //UsualIntent.toAnotherPage("MainActivity");
+                UsualIntent.toAnotherPage(MainActivity.class);
                 break;
             case R.id.all_remarks:
-                UsualIntent.toAnotherPage("GoodsRemarkActivity");
+                //UsualIntent.toAnotherPage("GoodsRemarkActivity");
+                UsualIntent.toAnotherPage(GoodsRemarkActivity.class);
                 break;
             case R.id.saler_page:
-                UsualIntent.toAnotherPage("SalerActivity");
+                //UsualIntent.toAnotherPage("SalerActivity");
+                UsualIntent.toAnotherPage(SalerActivity.class);
                 break;
             case R.id.saler_chatter:
                 intent = new Intent(v.getContext(),ChatingActivity.class);

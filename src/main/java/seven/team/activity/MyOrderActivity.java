@@ -79,7 +79,7 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.return_former:
-                UsualIntent.toAnotherPage("MainActivity");
+                finish();
                 break;
         }
     }

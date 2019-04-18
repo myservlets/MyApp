@@ -30,7 +30,7 @@ public class SalerActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.return_former:
-                UsualIntent.toAnotherPage("GoodsDetailsActivity");
+                finish();
                 break;
         }
     }

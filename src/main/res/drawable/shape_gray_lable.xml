@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--fragment2的item中公司地址，经验要求，学历要求，的灰色背景样式-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="rectangle">
+    <solid android:color="#e1e1e1"/>
+    <corners android:radius="6dp"/>
+    <stroke android:width="0dp"/>
+</shape>

@@ -4,22 +4,12 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
     <include layout="@layout/layout_header"/>
-    <LinearLayout style="@style/vertical_wrap_linger"
-                  android:padding="16dp">
-        <GridView android:id="@+id/goods_manage_grid" android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:numColumns="4"
-                  android:horizontalSpacing="16dp"
-                  android:verticalSpacing="16dp"
-                  android:gravity="center"/>
-
-        <GridView android:id="@+id/task_manage_grid"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="16dp"
-                  android:numColumns="4"
-                  android:horizontalSpacing="16dp"
-                  android:verticalSpacing="16dp"
-                  android:gravity="center"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+        <include layout="@layout/layout_manage_item"
+                 android:id="@+id/layout_goods_manage"/>
+        <include layout="@layout/layout_manage_item"
+                 android:id="@+id/layout_task_manage"/>
     </LinearLayout>
 </LinearLayout>

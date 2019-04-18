@@ -35,7 +35,7 @@ public class SystemInformActivity extends BaseActivity implements View.OnClickLi
         switch (v.getId()){
             case R.id.return_former:
                 finish();
-                UsualIntent.toAnotherPage("SystemSetActivity");
+                //UsualIntent.toAnotherPage("SystemSetActivity");
                 break;
         }
     }

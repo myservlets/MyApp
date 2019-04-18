@@ -48,7 +48,7 @@ public class WishListActivity extends BaseActivity implements View.OnClickListen
         switch (v.getId()){
             case R.id.return_former:
                 finish();
-                UsualIntent.toAnotherPage("MainActivity");
+                //UsualIntent.toAnotherPage("MainActivity");
                 break;
         }
     }

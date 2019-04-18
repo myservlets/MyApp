@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical" android:layout_width="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="#fff">
     <RelativeLayout
             android:layout_height="?attr/actionBarSize"
             android:layout_width="match_parent"
             android:background="@color/colorPrimary">
+        <Button
+                android:id="@+id/search_recruitments"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@mipmap/search"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="8dp"
+                android:layout_centerVertical="true"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -15,24 +24,48 @@
                 android:textSize="20sp"
                 android:textColor="#fff"
                 android:layout_centerInParent="true" />
+
         <Button
-                android:id="@+id/search_recruitments"
+                android:id="@+id/add_recruiments"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:background="@mipmap/search"
+                android:background="@mipmap/add_job"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="8dp"
                 android:layout_centerVertical="true"/>
     </RelativeLayout>
+        <!--<seven.team.util.ExpandableView-->
+                <!--android:id="@+id/expandview"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/shape_bottom_line"-->
+                <!--android:orientation="horizontal" >-->
+        <!--</seven.team.util.ExpandableView>-->
+    <com.samluys.filtertab.FilterTabView
+            android:id="@+id/ftb_filter"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tool_bar"
+            android:background="@color/white"
+            app:btn_solid_select_color="@color/color_e3ecf6"
+            app:btn_solid_unselect_color="@color/color_f5f5f6"
+            app:btn_corner_radius="24dp"
+            app:btn_text_select_color="@color/color_222222"
+            app:btn_text_unselect_color="@color/color_222222"
+            app:tab_text_style="1"
+            app:column_num="3"
+            app:color_main="#60dd6c"
+    />
 
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_recruit"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent" tools:listitem="@layout/item_recruitment"
-                android:background="@color/loginBtn" android:clipChildren="true" android:scrollbars="vertical"/>
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="@color/loginBtn"
+                android:clipChildren="true"
+                android:scrollbars="vertical"/>
     </LinearLayout>
 </LinearLayout>

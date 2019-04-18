@@ -52,9 +52,6 @@ public class HistoryBrowseAdapter extends RecyclerView.Adapter<HistoryBrowseAdap
 
 
                 MyApplication.getContext().startActivity(intent);
-
-                // TODO: 2019/4/10 0010 从后台获取最新的评论消息
-                //new LatestRemarkTask().execute();
             }
         });
         return viewHolder;

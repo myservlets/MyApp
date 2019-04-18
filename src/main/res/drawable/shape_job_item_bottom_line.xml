@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--fragment2中每个item的上下分割线样式-->
+<layer-list
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:drawable="@color/set_back">
+    </item>
+    <item
+            android:bottom ="2dp" android:top="1dp"
+            android:drawable="@color/white_color">
+    </item>
+</layer-list>

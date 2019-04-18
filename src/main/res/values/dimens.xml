@@ -9,4 +9,10 @@
     <dimen name="big_user_icon">64dp</dimen>
     <dimen name="midium_user_icon">56dp</dimen>
     <dimen name="little_user_icon">48dp</dimen>
+
+
+    <dimen name="tool_bar">44dp</dimen>
+    <dimen name="rv_height">400dp</dimen>
+    <dimen name="btn_corner_radius">4dp</dimen>
+
 </resources>

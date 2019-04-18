@@ -33,7 +33,7 @@ public class SystemAboutActivity extends BaseActivity implements View.OnClickLis
         switch (v.getId()){
             case R.id.return_former:
                 finish();
-                UsualIntent.toAnotherPage("SystemSetActivity");
+                //UsualIntent.toAnotherPage("SystemSetActivity");
                 break;
         }
     }

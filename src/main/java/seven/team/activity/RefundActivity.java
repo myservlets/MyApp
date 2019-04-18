@@ -25,7 +25,7 @@ public class RefundActivity extends BaseActivity implements View.OnClickListener
         switch (v.getId()){
             case R.id.return_former:
                 finish();
-                UsualIntent.toAnotherPage("MyOrderActivity");
+                //UsualIntent.toAnotherPage("MyOrderActivity");
                 break;
         }
     }

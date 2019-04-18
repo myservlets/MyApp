@@ -52,26 +52,26 @@ public class SystemSetActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.to_change_user:
-                UsualIntent.toAnotherPage("LoginedUserActivity");
+                UsualIntent.toAnotherPage(LoginedUserActivity.class);
                 break;
             case R.id.to_receive_address:
-                UsualIntent.toAnotherPage("ReceiveAddressActivity");
+                UsualIntent.toAnotherPage(ReceiveAddressActivity.class);
                 break;
             case R.id.to_safety:
-                UsualIntent.toAnotherPage("SystemSafetyActivity");
+                UsualIntent.toAnotherPage(SystemSafetyActivity.class);
                 break;
             case R.id.to_message_model:
-                UsualIntent.toAnotherPage("SystemInformActivity");
+                UsualIntent.toAnotherPage(SystemInformActivity.class);
                 break;
             case R.id.to_usual_usage:
-                UsualIntent.toAnotherPage("SystemUsualUseActivity");
+                UsualIntent.toAnotherPage(SystemUsualUseActivity.class);
                 break;
             case R.id.to_about_system:
-                UsualIntent.toAnotherPage("AboutSysActivity");
+                UsualIntent.toAnotherPage(SystemAboutActivity.class);
                 break;
             case R.id.back_frag_4:
                 finish();
-                UsualIntent.toAnotherPage("MainActivity");
+                //UsualIntent.toAnotherPage("MainActivity");
                 break;
             case R.id.to_exit_system:
                 ActivityCollector.finishAll();

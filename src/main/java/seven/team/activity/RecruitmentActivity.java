@@ -38,7 +38,7 @@ public class RecruitmentActivity extends BaseActivity implements View.OnClickLis
         Intent intent = getIntent();
         opposeRecruitment = (Recruitment) intent.getSerializableExtra("opposeRecruitment");
         //TODO
-        rName.setText(opposeRecruitment.getName());
+        rName.setText(opposeRecruitment.getJobName());
 
 
     }

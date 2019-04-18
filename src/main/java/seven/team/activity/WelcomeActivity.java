@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
 import org.litepal.LitePal;
+import seven.team.entity.LoginUser;
 import seven.team.entity.ReceiveInfo;
 import seven.team.entity.User;
 import seven.team.thread.*;
@@ -27,13 +28,19 @@ public class WelcomeActivity extends BaseActivity {
         receiveInfo.setPhone("11000000000");
         receiveInfo.setAddress("湖北省武汉大学");
         AppUsedTemp.setReceiveInfo(receiveInfo);
-        //new ManageGoodsTask().execute(4);
         new DefaultReceiveInfoTask().execute();
         new WishGoodsTask().execute();
         new HistoryBrowseTask().execute();
-        new OrderListTask().execute();
+        User user1 = new User();
+        user1.setUserId("1");
+        new OrderManageTask().execute(3,user1,0);
+        new OrderManageTask().execute(3,user1,1);
+        new OrderManageTask().execute(3,user1,2);
+        new OrderManageTask().execute(3,user1,3);
+        new OrderManageTask().execute(3,user1,4);
+        new OrderManageTask().execute(3,user1,5);
 
-        //new GoodsRemarksTask().execute(2,user);
+        new GoodsManageTask().execute(4);
     }
 
 
@@ -46,7 +53,7 @@ public class WelcomeActivity extends BaseActivity {
     };
 
     private void getHome(){
-        UsualIntent.toAnotherPage("LoginActivity");
+        UsualIntent.toAnotherPage(LoginActivity.class);
         finish();
     }
 }

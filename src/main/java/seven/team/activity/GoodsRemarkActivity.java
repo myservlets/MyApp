@@ -53,7 +53,8 @@ public class GoodsRemarkActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.return_former:
-                UsualIntent.toAnotherPage("GoodsDetailsActivity");
+                //UsualIntent.toAnotherPage("GoodsDetailsActivity");
+                UsualIntent.toAnotherPage(GoodsDetailsActivity.class);
                 break;
         }
     }

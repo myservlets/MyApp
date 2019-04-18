@@ -34,7 +34,7 @@ public class SearchRecruitActivity extends BaseActivity implements View.OnClickL
         //临时数据
         for(int i=0;i<10;i++){
             Recruitment r=new Recruitment();
-            r.setName(i+"");
+            r.setJobName(i+"");
             oRecruit.add(r);
         }
         //------------
@@ -69,7 +69,7 @@ public class SearchRecruitActivity extends BaseActivity implements View.OnClickL
     private List<Recruitment> match(List<Recruitment> oList,String str){
         List<Recruitment> result=new ArrayList<>();
         for(int i=0;i<oList.size();i++){
-            if(str.equals(oList.get(i).getName()))result.add(oList.get(i));
+            if(str.equals(oList.get(i).getJobName()))result.add(oList.get(i));
         }
         return result;
     }

@@ -1,5 +1,7 @@
 package seven.team.adapter;
 
+import seven.team.activity.LogisticsActivity;
+import seven.team.activity.MerchantGoodsActivity;
 import seven.team.entity.Goods;
 import seven.team.entity.Order;
 import android.support.v7.widget.RecyclerView;
@@ -25,12 +27,12 @@ public class WaitReceiveGoodsAdapter extends RecyclerView.Adapter<WaitReceiveGoo
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.order_head:
-                UsualIntent.toAnotherPage("MerchantGoodsListActivity");
+                UsualIntent.toAnotherPage(MerchantGoodsActivity.class);
                 break;
             case R.id.order_goods:
                 break;
             case R.id.where_goods:
-                UsualIntent.toAnotherPage("LogisticsActivity");
+                UsualIntent.toAnotherPage(LogisticsActivity.class);
                 break;
             case R.id.confirm_order:
                 break;

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:rowCount="1"
+            android:columnCount="4" android:padding="16dp">
+	<TextView android:id="@+id/item1"
+			style="@style/manage_page_text"
+	          android:drawableTop="@drawable/nav_head"
+	          android:text="发布商品"/>
+	<TextView android:id="@+id/item2"
+			style="@style/manage_page_text"
+	          android:drawableTop="@drawable/nav_head"
+	          android:text="我的订单"/>
+	<TextView android:id="@+id/item3"
+			style="@style/manage_page_text"
+	          android:drawableTop="@drawable/nav_head"
+	          android:text="我的商品"/>
+	<TextView android:id="@+id/item4"
+			style="@style/manage_page_text"
+	          android:drawableTop="@drawable/nav_head"
+	          android:text="达成交易"/>
+</GridLayout>

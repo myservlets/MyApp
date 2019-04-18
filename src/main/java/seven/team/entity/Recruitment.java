@@ -3,49 +3,75 @@ package seven.team.entity;
 import java.io.Serializable;
 
 public class Recruitment implements Serializable {
-    private int id;
-    private String name;
-    private String price; //商品价格
-    private String describe; //商品描述
-    private String type;  //商品的种类
+    private int jobId;
+    private String jobName;//兼职名称
+    private String companyAddress; //公司地点
+    private String companyName; //公司名称
+    private String jobPay; //薪水
+    private String jobRequirement; //兼职要求（具体）
+    private String experienceRequirement; //工作经验要求
+    private String educationRequirement; //学历要求
 
-    public int getId() {
-        return id;
+    public int getJobId() {
+        return jobId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setJobId(int jobId) {
+        this.jobId = jobId;
     }
 
-    public String getName() {
-        return name;
+    public String getJobName() {
+        return jobName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setJobName(String jobName) {
+        this.jobName = jobName;
     }
 
-    public String getPrice() {
-        return price;
+    public String getCompanyAddress(){ return companyAddress;}
+
+    public void setCompanyAddress(String companyAddress) {
+        this.companyAddress = companyAddress;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public String getDescribe() {
-        return describe;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public String getJobPay() {
+        return jobPay;
     }
 
-    public String getType() {
-        return type;
+    public void setJobPay(String jobPay) {
+        this.jobPay = jobPay;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public String getJobRequirement() {
+        return jobRequirement;
     }
+
+    public void setJobRequirement(String jobRequirement) {
+        this.jobRequirement = jobRequirement;
+    }
+
+    public String getExperienceRequirement() {
+        return experienceRequirement;
+    }
+
+    public void setExperienceRequirement(String experienceRequirement) {
+        this.experienceRequirement = experienceRequirement;
+    }
+
+    public String getEducationRequirement() {
+        return educationRequirement;
+    }
+
+    public void setEducationRequirement(String educationRequirement) {
+        this.educationRequirement = educationRequirement;
+    }
+
 }

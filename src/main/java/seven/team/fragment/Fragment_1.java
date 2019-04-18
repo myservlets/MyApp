@@ -7,13 +7,8 @@ import seven.handler.ServletsConn;
 import seven.team.adapter.GoodsAdapter;
 import seven.team.adapter.TypeAdapter;
 import seven.team.entity.User;
-import seven.team.thread.GoodsLoadTask;
-import seven.team.thread.ManageGoodsTask;
 import seven.team.thread.TypeGoodsListTask;
-import seven.team.util.AppUsedAdapter;
-import seven.team.util.AppUsedLists;
-import seven.team.util.RigisterWeChat;
-import seven.team.util.UsualIntent;
+import seven.team.util.*;
 import seven.team.entity.Goods;
 import seven.team.activity.R;
 import seven.team.activity.SearchGoodsActivity;
@@ -46,6 +41,7 @@ import java.util.List;
  */
 public class Fragment_1 extends Fragment implements View.OnClickListener, OnBannerListener {
 
+    public static MyProgressDialog myProgressDialog;
     private List<Goods>goodsList;
     private GoodsAdapter adapter;
     private List<String> typeList;
@@ -69,6 +65,7 @@ public class Fragment_1 extends Fragment implements View.OnClickListener, OnBann
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_1,container,false);
+        myProgressDialog = new MyProgressDialog(getContext());
         typeList = Arrays.asList(getResources().getStringArray(R.array.types));
         imageList.add(R.mipmap.book_type);
         imageList.add(R.mipmap.phone_type);
@@ -114,7 +111,7 @@ public class Fragment_1 extends Fragment implements View.OnClickListener, OnBann
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 if(position==parent.getChildCount()-1){
-                    UsualIntent.toAnotherPage("SearchGoodsActivity");
+                    UsualIntent.toAnotherPage(SearchGoodsActivity.class);
                 }else {
                     TextView type=view.findViewById(R.id.type_name);
                     String key = type.getText().toString();

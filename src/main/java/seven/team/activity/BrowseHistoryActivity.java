@@ -48,7 +48,8 @@ public class BrowseHistoryActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.return_former:
-                UsualIntent.toAnotherPage("MainActivity");
+                //UsualIntent.toAnotherPage("MainActivity");
+                UsualIntent.toAnotherPage(MainActivity.class);
         }
     }
 }

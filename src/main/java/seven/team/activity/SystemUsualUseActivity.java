@@ -39,7 +39,7 @@ public class SystemUsualUseActivity extends BaseActivity implements View.OnClick
         switch (v.getId()){
             case R.id.return_former:
                 finish();
-                UsualIntent.toAnotherPage("SystemSetActivity");
+                //UsualIntent.toAnotherPage("SystemSetActivity");
                 break;
         }
     }

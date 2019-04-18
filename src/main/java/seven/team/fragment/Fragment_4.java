@@ -4,6 +4,7 @@ package seven.team.fragment;
 import android.os.Message;
 import android.widget.Toast;
 import seven.handler.ServletsConn;
+import seven.team.activity.*;
 import seven.team.entity.LoginUser;
 import android.app.AlertDialog;
 import android.content.ContentUris;
@@ -34,8 +35,6 @@ import java.io.IOException;
 import seven.team.util.MyApplication;
 import seven.team.util.MyProgressDialog;
 import seven.team.util.UsualIntent;
-import seven.team.activity.MainActivity;
-import seven.team.activity.R;
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.*;
 
@@ -133,10 +132,10 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
             case R.id.nickname:
                 break;
             case R.id.to_set_page:
-                UsualIntent.toAnotherPage("SystemSetActivity");
+                UsualIntent.toAnotherPage(SystemSetActivity.class);
                 break;
             case R.id.grounding_manage:
-                UsualIntent.toAnotherPage("GoodsManageActivity");
+                UsualIntent.toAnotherPage(ManageActivity.class);
                 break;
             case R.id.choose_from_camera:
                 isCamera = true;
@@ -188,13 +187,13 @@ public class Fragment_4 extends Fragment implements View.OnClickListener {
                 UsualIntent.toAnotherPageWithData("MyOrderActivity","4");
                 break;
             case R.id.goods_car:
-                UsualIntent.toAnotherPage("ShoppingCartActivity");
+                UsualIntent.toAnotherPage(ShoppingCartActivity.class);
                 break;
             case R.id.browse_history:
-                UsualIntent.toAnotherPage("BrowseHistoryActivity");
+                UsualIntent.toAnotherPage(BrowseHistoryActivity.class);
                 break;
             case R.id.wish_list:
-                UsualIntent.toAnotherPage("WishListActivity");
+                UsualIntent.toAnotherPage(WishListActivity.class);
                 break;
         }
     }

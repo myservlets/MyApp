@@ -26,7 +26,6 @@ public class LogisticsActivity extends AppCompatActivity implements View.OnClick
         switch (v.getId()){
             case R.id.return_former:
                 finish();
-                UsualIntent.toAnotherPage("MyOrderActivity");
                 break;
         }
     }

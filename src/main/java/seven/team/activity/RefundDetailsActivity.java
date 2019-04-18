@@ -26,7 +26,7 @@ public class RefundDetailsActivity extends AppCompatActivity implements View.OnC
         switch (v.getId()){
             case R.id.return_former:
                 finish();
-                UsualIntent.toAnotherPage("MyOrderActivity");
+                //UsualIntent.toAnotherPage("MyOrderActivity");
                 break;
         }
     }

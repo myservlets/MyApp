@@ -7,6 +7,12 @@ import java.util.List;
 
 public class AppUsedLists {
 
+    private static ArrayList<Order>shoppingCarOrderList;
+    private static ArrayList<Order>WaitPayOrderList;
+    private static ArrayList<Order>WaitSendOrderList;
+    private static ArrayList<Order>WaitReceiveOrderList;
+    private static ArrayList<Order>WaitRemarkOrderList;
+    private static ArrayList<Order>WaitRefundOrderList;
     private static ArrayList<CommentItem>goodsRemarksList;
     private static ArrayList<Comment>userComments;
     private static ArrayList<Goods>historyBrowseList;
@@ -135,5 +141,53 @@ public class AppUsedLists {
 
     public static void setUserComments(ArrayList<Comment> userComments) {
         AppUsedLists.userComments = userComments;
+    }
+
+    public static ArrayList<Order> getWaitRefundOrderList() {
+        return WaitRefundOrderList;
+    }
+
+    public static void setWaitRefundOrderList(ArrayList<Order> waitRefundOrderList) {
+        WaitRefundOrderList = waitRefundOrderList;
+    }
+
+    public static ArrayList<Order> getWaitRemarkOrderList() {
+        return WaitRemarkOrderList;
+    }
+
+    public static void setWaitRemarkOrderList(ArrayList<Order> waitRemarkOrderList) {
+        WaitRemarkOrderList = waitRemarkOrderList;
+    }
+
+    public static ArrayList<Order> getWaitReceiveOrderList() {
+        return WaitReceiveOrderList;
+    }
+
+    public static void setWaitReceiveOrderList(ArrayList<Order> waitReceiveOrderList) {
+        WaitReceiveOrderList = waitReceiveOrderList;
+    }
+
+    public static ArrayList<Order> getWaitSendOrderList() {
+        return WaitSendOrderList;
+    }
+
+    public static void setWaitSendOrderList(ArrayList<Order> waitSendOrderList) {
+        WaitSendOrderList = waitSendOrderList;
+    }
+
+    public static ArrayList<Order> getWaitPayOrderList() {
+        return WaitPayOrderList;
+    }
+
+    public static void setWaitPayOrderList(ArrayList<Order> waitPayOrderList) {
+        WaitPayOrderList = waitPayOrderList;
+    }
+
+    public static ArrayList<Order> getShoppingCarOrderList() {
+        return shoppingCarOrderList;
+    }
+
+    public static void setShoppingCarOrderList(ArrayList<Order> shoppingCarOrderList) {
+        AppUsedLists.shoppingCarOrderList = shoppingCarOrderList;
     }
 }

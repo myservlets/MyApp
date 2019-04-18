@@ -8,7 +8,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import seven.team.adapter.MainFragPagerAdapter;
-import seven.team.util.AppUsedAdapter;
 import seven.team.util.BaseActivity;
 
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {

@@ -1,5 +1,7 @@
 package seven.team.adapter;
 
+import seven.team.activity.MerchantGoodsActivity;
+import seven.team.activity.RefundDetailsActivity;
 import seven.team.entity.Goods;
 import seven.team.entity.Order;
 import android.support.v7.widget.RecyclerView;
@@ -23,12 +25,12 @@ public class WaitRefundGoodsAdapter extends RecyclerView.Adapter<WaitRefundGoods
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.order_head:
-                UsualIntent.toAnotherPage("MerchantGoodsListActivity");
+                UsualIntent.toAnotherPage(MerchantGoodsActivity.class);
                 break;
             case R.id.order_goods:
                 break;
             case R.id.details:
-                UsualIntent.toAnotherPage("RefundDetailsActivity");
+                UsualIntent.toAnotherPage(RefundDetailsActivity.class);
                 break;
         }
     }
