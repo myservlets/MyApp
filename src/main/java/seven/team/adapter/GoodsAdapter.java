@@ -45,6 +45,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder>{
             public void onClick(View v) {
                 int pos = viewHolder.getAdapterPosition();
                 intent = new Intent(view.getContext(), GoodsDetailsActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
                 Goods goods = goodsList.get(pos);
                 goods.setGoodsId(5);
 //                intent.putExtra("goods_data",goods);
