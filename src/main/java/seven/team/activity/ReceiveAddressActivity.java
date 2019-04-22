@@ -15,11 +15,11 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import seven.handler.ServletsConn;
 import seven.team.adapter.ReceiveAddressAdapter;
 import seven.team.util.BaseActivity;
 import seven.team.entity.ReceiveInfo;
 import seven.team.entity.User;
-import seven.handler.ServletsConn;
 
 public class ReceiveAddressActivity extends BaseActivity implements View.OnClickListener {
 

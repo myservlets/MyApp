@@ -80,7 +80,7 @@ public class MerchantGoodsListActivity extends BaseActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.return_former:
-                UsualIntent.toAnotherPage("MainActivity");
+                finish();
         }
     }
 }

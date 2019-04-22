@@ -1,12 +1,7 @@
 package seven.team.fragment;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
-import seven.handler.ServletsConn;
 import seven.team.adapter.GoodsAdapter;
 import seven.team.adapter.TypeAdapter;
-import seven.team.entity.User;
 import seven.team.thread.TypeGoodsListTask;
 import seven.team.util.*;
 import seven.team.entity.Goods;
@@ -31,7 +26,6 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

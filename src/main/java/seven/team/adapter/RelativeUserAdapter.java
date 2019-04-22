@@ -1,5 +1,6 @@
 package seven.team.adapter;
 
+import seven.handler.ServletsConn;
 import seven.team.util.MyApplication;
 import seven.team.entity.LoginUser;
 import seven.team.entity.User;
@@ -16,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import seven.handler.ServletsConn;
 
 import java.util.List;
 

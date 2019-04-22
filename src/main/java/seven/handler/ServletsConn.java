@@ -1,4 +1,4 @@
-﻿package seven.handler;
+package seven.handler;
 
 import android.util.Log;
 import android.widget.Toast;
@@ -12,8 +12,8 @@ import java.net.URL;
 
 public class ServletsConn {
     public static String host2 = "http://243i4s6955.zicp.vip/test/";
-    public static String host1 = "http://www.whuyjs.club:8080/test/";
-    public static String host = "http://243i4s6955.zicp.vip/MyServlets_war_exploded/";
+    public static String host = "http://www.whuyjs.club:8080/test/";
+    public static String host1 = "http://243i4s6955.zicp.vip/MyServlets_war_exploded/";
 
     public static final String TAG = "MainActivity";
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");

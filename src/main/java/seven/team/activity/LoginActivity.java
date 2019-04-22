@@ -1,14 +1,11 @@
 package seven.team.activity;
 
-import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
-import android.widget.*;
 import okhttp3.*;
-import org.json.JSONObject;
+import seven.handler.ServletsConn;
 import seven.team.util.*;
 import seven.team.sqlite.Province;
 import seven.team.entity.LoginUser;
@@ -36,14 +33,11 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import seven.handler.ServletsConn;
 import org.litepal.LitePal;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, TextWatcher ,View.OnTouchListener{

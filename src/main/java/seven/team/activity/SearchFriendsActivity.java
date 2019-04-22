@@ -1,5 +1,6 @@
 package seven.team.activity;
 
+import seven.handler.ServletsConn;
 import seven.team.adapter.RelativeUserAdapter;
 import seven.team.util.BaseActivity;
 import seven.team.entity.User;
@@ -10,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import seven.handler.ServletsConn;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
