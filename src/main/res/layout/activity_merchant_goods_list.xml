@@ -14,12 +14,18 @@
                           android:textColor="@color/black_color"
                           android:textSize="16sp"
                           android:text="商品图片"/>
-                <ImageView
-                        android:id="@+id/image_goods_icon"
-                        android:layout_marginTop="16dp"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
-                        android:src="@drawable/nav_head"/>
+
+                <LinearLayout
+                        android:id="@+id/goods_icons"
+                        style="@style/horizontal_wrap_linger"
+                        android:padding="16dp">
+                    <ImageView
+                            android:id="@+id/add_goods_icon"
+                            android:layout_width="96dp"
+                            android:layout_height="96dp"
+                            android:src="@drawable/nav_head"/>
+                </LinearLayout>
+
             </LinearLayout>
             <LinearLayout style="@style/vertical_wrap_linger">
                 <include android:id="@+id/layout_goods_name" layout="@layout/layout_merchant_text_item"/>
