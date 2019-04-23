@@ -47,10 +47,10 @@ public class WebSocketHandler {
             public void run() {
                 try {
 
-                    InetAddress ip = InetAddress.getByName("www.whuyjs.club");
+                    InetAddress ip = InetAddress.getByName("243i4s6955.zicp.vip");
                     hostURL = ip.getHostAddress();//+":25781";
 
-                    socket = new Socket(hostURL,9999);
+                    socket = new Socket(hostURL,25781);
                     Log.i("WebSocketHandler", "建立连接：" + socket);
                     readbuff();
                     showMSGs();

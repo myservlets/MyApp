@@ -11,9 +11,9 @@ import android.content.Intent;
  */
 public class UsualIntent {
     public static void toAnotherPage(Class<?>cla){
-
         Context context = MyApplication.getContext();
         Intent intent = new Intent(context,cla);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
         context.startActivity(intent);
     }
 

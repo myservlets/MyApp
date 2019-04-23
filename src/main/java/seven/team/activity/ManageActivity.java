@@ -72,7 +72,6 @@ public class ManageActivity extends BaseActivity {
         publishGoods.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //UsualIntent.toAnotherPage("MerchantGoodsActivity");
                 UsualIntent.toAnotherPage(MerchantGoodsActivity.class);
             }
         });
@@ -119,6 +118,5 @@ public class ManageActivity extends BaseActivity {
                 UsualIntent.toAnotherPage(EditTaskActivity.class);
             }
         });;
-
     }
 }

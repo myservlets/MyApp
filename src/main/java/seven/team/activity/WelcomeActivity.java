@@ -1,5 +1,6 @@
 package seven.team.activity;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class WelcomeActivity extends BaseActivity {
         new HistoryBrowseTask().execute();
         User user1 = new User();
         user1.setUserId("1");
+
         new OrderManageTask().execute(3,user1,0);
         new OrderManageTask().execute(3,user1,1);
         new OrderManageTask().execute(3,user1,2);

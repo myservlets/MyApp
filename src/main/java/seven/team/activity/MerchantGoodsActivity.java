@@ -1,15 +1,39 @@
 package seven.team.activity;
 
+import android.content.ContentUris;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.*;
+import com.zhihu.matisse.Matisse;
+import com.zhihu.matisse.MimeType;
+import com.zhihu.matisse.engine.impl.GlideEngine;
+import com.zhihu.matisse.internal.entity.CaptureStrategy;
+import okhttp3.*;
+import seven.handler.ServletsConn;
 import seven.team.entity.Goods;
 import seven.team.entity.LoginUser;
 import seven.team.util.BaseActivity;
 import android.os.Bundle;
-import seven.team.util.UsualIntent;
+import seven.team.util.MyApplication;
+import seven.team.util.MyGlideEngine;
+import seven.team.util.MyProgressDialog;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 public class MerchantGoodsActivity extends BaseActivity implements View.OnClickListener {
 
+    private static final int REQUEST_CODE_CHOOSE = 1;
+    private String imagePath;
     private ImageView returnFormer;
     private ImageView goodsIcon;
     private TextView title;
@@ -44,7 +68,7 @@ public class MerchantGoodsActivity extends BaseActivity implements View.OnClickL
 
     private void bindData(){
         returnFormer = findViewById(R.id.return_former);
-        goodsIcon = findViewById(R.id.image_goods_icon);
+        goodsIcon = findViewById(R.id.add_goods_icon);
         goodsIcon.setOnClickListener(this);
         title = findViewById(R.id.title);
         title.setText("上架商品");
@@ -88,10 +112,16 @@ public class MerchantGoodsActivity extends BaseActivity implements View.OnClickL
                 //UsualIntent.toAnotherPage("MainActivity");
                 finish();
                 break;
-            case R.id.goods_icon:
-
-                // TODO: 2019/4/16 0016 添加商品图片
+            case R.id.add_goods_icon:
+                Matisse.from(this)
+                        .choose(MimeType.ofAll())
+                        .countable(true)
+                        .maxSelectable(3)
+                        .capture(false)
+                        .imageEngine(new MyGlideEngine())
+                        .forResult(REQUEST_CODE_CHOOSE);
                 break;
+                // TODO: 2019/4/16 0016 添加商品图
             case R.id.submit_goods:
                 Goods goods = new Goods();
                 goods.setGoodsName(goodsName.getText().toString());
@@ -105,4 +135,53 @@ public class MerchantGoodsActivity extends BaseActivity implements View.OnClickL
                 break;
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
+            List<Uri> result = Matisse.obtainResult(data);
+
+            handLeImageOnLitKat(result.get(0));
+        }
+    }
+
+
+    private void handLeImageOnLitKat(Uri uri){
+        if(DocumentsContract.isDocumentUri(this,uri)){
+            String docId = DocumentsContract.getDocumentId(uri);
+            if("com.android.providers.media.documents".equals(uri.getAuthority())){
+                String id = docId.split(":")[1];
+                String selection = MediaStore.Images.Media._ID+"="+id;
+                imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,selection);
+            }else if("com.android.providers.downloads.documents".equals(uri.getAuthority())){
+                Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"),Long.valueOf(docId));
+                imagePath = getImagePath(contentUri,null);
+            }
+        }else if("content".equalsIgnoreCase(uri.getScheme())){
+            imagePath = getImagePath(uri,null);
+        }else if("file".equalsIgnoreCase(uri.getScheme())){
+            imagePath = uri.getPath();
+        }
+        displayImage(imagePath);
+    }
+
+    private String getImagePath(Uri uri,String selection){
+        String path = null;
+        Cursor cursor = this.getContentResolver().query(uri,null,selection,null,null);
+        if(cursor!=null){
+            if(cursor.moveToFirst()){
+                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+            }
+            cursor.close();
+        }
+        return path;
+    }
+
+    private void displayImage(String imagePath){
+        if(imagePath!=null){
+            goodsIcon.setImageBitmap(BitmapFactory.decodeFile(imagePath));
+        }
+    }
+
 }
